@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Service Companion — Remember the person, continue the conversation</title>
+  <meta name="description" content="A privacy-first mobile companion for Jehovah's Witnesses to remember the people they meet and continue meaningful conversations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-50: #EDF3F8;
+      --primary-100: #D4E4F0;
+      --primary-200: #A9C9E1;
+      --primary-300: #7EAED2;
+      --primary-400: #4F8FBF;
+      --primary-500: #2E6B9C;
+      --primary-600: #245781;
+      --primary-700: #1C4366;
+      --primary-800: #142F4B;
+      --primary-900: #0C1B30;
+      --secondary-400: #D99558;
+      --secondary-500: #C47A38;
+      --neutral-0: #FFFFFF;
+      --neutral-50: #F7F8FA;
+      --neutral-100: #ECEEF2;
+      --neutral-200: #D8DBE2;
+      --neutral-300: #B8BDC9;
+      --neutral-400: #949BAD;
+      --neutral-500: #6F7789;
+      --neutral-600: #555D6E;
+      --neutral-700: #3D4452;
+      --neutral-800: #272C38;
+      --neutral-900: #14171F;
+      --success: #3B8A5A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background: var(--neutral-0);
+      color: var(--neutral-900);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 80px;
+      position: relative;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, var(--primary-50) 0%, transparent 70%),
+        var(--neutral-0);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-300), var(--primary-500), var(--primary-300));
+    }
+
+    /* ── Logo ── */
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: var(--primary-500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 24px rgba(46, 107, 156, 0.25);
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .logo span {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Typography ── */
+    h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--neutral-900);
+      max-width: 600px;
+      margin-bottom: 16px;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+
+    h1 strong {
+      font-weight: 600;
+      color: var(--primary-500);
+    }
+
+    .subtitle {
+      font-size: clamp(16px, 2.5vw, 19px);
+      color: var(--neutral-500);
+      line-height: 1.6;
+      max-width: 480px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    /* ── Contact CTA ── */
+    .contact-cta {
+      animation: fadeUp 0.8s ease 0.3s both;
+      text-align: center;
+    }
+
+    .contact-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--primary-500);
+      color: #fff;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .contact-cta a:hover {
+      background: var(--primary-600);
+    }
+
+    .contact-cta a:active {
+      transform: scale(0.97);
+    }
+
+    .contact-cta p {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--neutral-400);
+    }
+
+    /* ── Features ── */
+    .features {
+      padding: 80px 24px;
+      background: var(--neutral-50);
+    }
+
+    .features-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .features-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary-400);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--neutral-0);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      border: 1px solid var(--neutral-100);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--neutral-900);
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--neutral-500);
+      line-height: 1.55;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 1px solid var(--neutral-100);
+    }
+
+    footer p {
+      font-size: 13px;
+      color: var(--neutral-400);
+      line-height: 1.6;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 500px) {
+      .hero { padding: 48px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="logo"><span>FSC</span></div>
+    <h1>Remember the person.<br><strong>Continue the conversation.</strong></h1>
+    <p class="subtitle">A privacy-first mobile companion for Jehovah's Witnesses. Track visits, not hours. Coming soon.</p>
+
+    <div class="contact-cta">
+      <a href="mailto:hello@returnvisits.org">Get in Touch</a>
+      <p>hello@returnvisits.org</p>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="features-inner">
+      <div class="features-label">Built for the ministry</div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💬</div>
+          <h3>Conversations First</h3>
+          <p>Remember what you discussed and where you left off. Pick up right where the conversation stopped.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Private by Design</h3>
+          <p>End-to-end encrypted. Your data stays on your device. No one else can read it — not even us.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📴</div>
+          <h3>Works Offline</h3>
+          <p>Full functionality without an internet connection. Perfect for the territory, wherever it takes you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Return Visits &middot; returnvisits.org</p>
+  </footer>
+
+</body>
+</html>
