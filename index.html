@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Field Service Companion — Remember the person, continue the conversation</title>
   <meta name="description" content="A privacy-first mobile companion for Jehovah's Witnesses to remember the people they meet and continue meaningful conversations.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -73,23 +75,11 @@
 
     /* ── Logo ── */
     .logo {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
-      background: var(--primary-500);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 72px;
+      height: 72px;
       margin-bottom: 32px;
-      box-shadow: 0 4px 24px rgba(46, 107, 156, 0.25);
       animation: fadeUp 0.8s ease both;
-    }
-
-    .logo span {
-      font-size: 16px;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: 0.04em;
+      filter: drop-shadow(0 4px 16px rgba(46, 107, 156, 0.25));
     }
 
     /* ── Typography ── */
@@ -241,13 +231,19 @@
 <body>
 
   <section class="hero">
-    <div class="logo"><span>FSC</span></div>
+    <svg class="logo" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <rect width="512" height="512" rx="112" fill="#2E6B9C"/>
+      <path d="M256 440 C248 420, 130 310, 130 215 C130 145, 186 90, 256 90 C326 90, 382 145, 382 215 C382 310, 264 420, 256 440 Z" fill="white" fill-opacity="0.92"/>
+      <circle cx="256" cy="190" r="38" fill="#A9C9E1" fill-opacity="0.8"/>
+      <path d="M256 228 C220 240, 196 272, 204 316 L308 316 C316 272, 292 240, 256 228 Z" fill="#A9C9E1" fill-opacity="0.7"/>
+      <circle cx="256" cy="220" r="88" fill="none" stroke="#D99558" stroke-width="5.5" opacity="0.5"/>
+    </svg>
     <h1>Remember the person.<br><strong>Continue the conversation.</strong></h1>
     <p class="subtitle">A privacy-first mobile companion for Jehovah's Witnesses. Track visits, not hours. Coming soon.</p>
 
     <div class="contact-cta">
-      <a href="mailto:hello@returnvisits.org">Get in Touch</a>
-      <p>hello@returnvisits.org</p>
+      <a href="/cdn-cgi/l/email-protection#0d65686161624d7f6879787f637b647e64797e23627f6a">Get in Touch</a>
+      <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b131e1717143b091e0f0e09150d1208120f085514091c">[email&#160;protected]</a></p>
     </div>
   </section>
 
@@ -268,15 +264,4 @@
         <div class="feature-card">
           <div class="feature-icon">📴</div>
           <h3>Works Offline</h3>
-          <p>Full functionality without an internet connection. Perfect for the territory, wherever it takes you.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2026 Return Visits &middot; returnvisits.org</p>
-  </footer>
-
-</body>
-</html>
+          <p>Full functionality without an internet connection. Perfect for the territory, wherever it t
