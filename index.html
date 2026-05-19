@@ -108,15 +108,21 @@
       animation: fadeUp 0.8s ease 0.2s both;
     }
 
-    /* ── Contact CTA ── */
-    .contact-cta {
+    /* ── CTAs ── */
+    .cta {
       animation: fadeUp 0.8s ease 0.3s both;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      max-width: 360px;
     }
 
-    .contact-cta a {
+    .cta-primary {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       padding: 14px 28px;
       background: var(--primary-500);
@@ -127,20 +133,100 @@
       font-weight: 600;
       text-decoration: none;
       transition: background 0.2s ease, transform 0.1s ease;
+      min-width: 220px;
     }
 
-    .contact-cta a:hover {
-      background: var(--primary-600);
+    .cta-primary:hover { background: var(--primary-600); }
+    .cta-primary:active { transform: scale(0.97); }
+
+    .cta-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      color: var(--neutral-300);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
-    .contact-cta a:active {
+    .cta-divider::before,
+    .cta-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--neutral-200);
+    }
+
+    .subscribe-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .subscribe-label {
+      font-size: 13px;
+      color: var(--neutral-500);
+      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    .subscribe-row {
+      display: flex;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .subscribe-input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 14px;
+      border: 1px solid var(--neutral-200);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--neutral-900);
+      background: var(--neutral-0);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .subscribe-input:focus {
+      outline: none;
+      border-color: var(--primary-400);
+      box-shadow: 0 0 0 3px rgba(46, 107, 156, 0.12);
+    }
+
+    .subscribe-input::placeholder {
+      color: var(--neutral-400);
+    }
+
+    .subscribe-button {
+      padding: 12px 18px;
+      background: var(--neutral-0);
+      color: var(--primary-600);
+      border: 1px solid var(--primary-200);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+      white-space: nowrap;
+    }
+
+    .subscribe-button:hover {
+      background: var(--primary-50);
+      border-color: var(--primary-400);
+    }
+
+    .subscribe-button:active {
       transform: scale(0.97);
     }
 
-    .contact-cta p {
-      margin-top: 12px;
-      font-size: 13px;
-      color: var(--neutral-400);
+    @media (max-width: 420px) {
+      .subscribe-row { flex-direction: column; }
+      .subscribe-button { width: 100%; }
     }
 
     /* ── Features ── */
@@ -236,9 +322,43 @@
     <h1>Remember the person.<br><strong>Continue the conversation.</strong></h1>
     <p class="subtitle">A privacy-first mobile companion for Jehovah's Witnesses. Track visits, not hours. Coming soon.</p>
 
-    <div class="contact-cta">
-      <a href="/cdn-cgi/l/email-protection#0d65686161624d7f6879787f637b647e64797e23627f6a">Get in Touch</a>
-      <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b131e1717143b091e0f0e09150d1208120f085514091c">[email&#160;protected]</a></p>
+    <div class="cta">
+      <a class="cta-primary" href="mailto:support@returnvisits.org?subject=Beta%20request">Join the Beta</a>
+
+      <div class="cta-divider">or</div>
+
+      <!--
+        Mailchimp naked-form embed. To wire this up:
+          1. In your Mailchimp account, open the audience you want signups to
+             land in → Signup forms → Embedded forms → "Naked" / "Unstyled".
+          2. Copy the <form action="..."> URL into the `action` attribute below.
+          3. Copy the bot-honeypot `<input type="text" name="b_..._..." ...>` line
+             from the same embed code and replace the placeholder honeypot below
+             (the name attribute must match your audience exactly).
+        Until those two strings are swapped in, the form will not actually
+        submit — it will silently 404 from Mailchimp.
+      -->
+      <form class="subscribe-form"
+            action="https://YOUR-DC.list-manage.com/subscribe/post?u=YOUR_USER_ID&amp;id=YOUR_LIST_ID"
+            method="post"
+            target="_blank"
+            novalidate>
+        <div class="subscribe-label">Stay in the loop. Get launch updates by email.</div>
+        <div class="subscribe-row">
+          <input class="subscribe-input"
+                 type="email"
+                 name="EMAIL"
+                 required
+                 placeholder="you@example.com"
+                 aria-label="Email address">
+          <button class="subscribe-button" type="submit">Subscribe</button>
+        </div>
+        <!-- Mailchimp bot-honeypot. Replace the name= attribute with the one
+             from your audience-specific embed code. -->
+        <div style="position:absolute;left:-5000px" aria-hidden="true">
+          <input type="text" name="b_YOUR_USER_ID_YOUR_LIST_ID" tabindex="-1" value="">
+        </div>
+      </form>
     </div>
   </section>
 
