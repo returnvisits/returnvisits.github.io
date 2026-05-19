@@ -89,6 +89,10 @@
             background: #EDF3F8;
             color: #2E6B9C;
         }
+        .badge.partial {
+            background: #FDF2E4;
+            color: #C47A38;
+        }
         .table-wrap {
             overflow-x: auto;
             margin: 16px 0 24px;
@@ -134,19 +138,19 @@
     <div class="header">
         <a href="https://returnvisits.org">← returnvisits.org</a>
         <h1>Privacy Policy</h1>
-        <div class="updated">Last updated: April 16, 2026</div>
+        <div class="updated">Last updated: May 18, 2026</div>
     </div>
 
     <div class="container">
         <div class="summary">
-            <strong>The short version:</strong> Your ministry data — contacts, visit notes, literature records, addresses — stays on your device, encrypted. Separately, we collect anonymous product analytics and crash diagnostics to improve the app. That second category is on by default and can be turned off anytime in Settings.
+            <strong>The short version:</strong> Your ministry data — contacts, visit notes, literature records, addresses — stays on your device, encrypted. Two narrow exceptions: when you view the map, the addresses you've entered are sent to Apple Maps or Google Maps so they can be turned into pins (these are the device's built-in mapping services), and we collect anonymous product analytics and crash diagnostics to improve the app. Diagnostics is on by default and can be turned off anytime in Settings.
         </div>
 
         <h2>Who we are</h2>
-        <p>Field Service Companion ("FSC", "the app") is developed by Return Visits, based in Atlanta, Georgia, USA. You can reach us at <a href="mailto:hello@returnvisits.org">hello@returnvisits.org</a>.</p>
+        <p>Field Service Companion ("FSC", "the app") is published by <strong>Vineyard Software LLC</strong>, a Georgia limited liability company (filed April 27, 2026), doing business as "Return Visits." We are based in Atlanta, Georgia, USA. You can reach us at <a href="mailto:hello@returnvisits.org">hello@returnvisits.org</a> for general questions, <a href="mailto:support@returnvisits.org">support@returnvisits.org</a> for app support, or <a href="mailto:security@returnvisits.org">security@returnvisits.org</a> for security or privacy concerns.</p>
 
         <h2>What stays on your device</h2>
-        <p>Your ministry data never leaves your device. Specifically:</p>
+        <p>Your ministry data never leaves your device <em>through us</em>. Specifically:</p>
         <div class="table-wrap">
             <table>
                 <thead>
@@ -168,19 +172,24 @@
                         <td><span class="badge local">Device only</span></td>
                     </tr>
                     <tr>
+                        <td>Reminders &amp; follow-ups</td>
+                        <td>Scheduled local notifications for the next visit</td>
+                        <td><span class="badge local">Device only</span></td>
+                    </tr>
+                    <tr>
                         <td>Device contacts (READ_CONTACTS)</td>
                         <td>Optional import — only accessed when you choose to import</td>
                         <td><span class="badge local">Device only</span></td>
                     </tr>
                     <tr>
-                        <td>Location (ACCESS_FINE_LOCATION)</td>
+                        <td>Your GPS location</td>
                         <td>Showing your current position on the map</td>
                         <td><span class="badge local">Device only</span></td>
                     </tr>
                     <tr>
-                        <td>Photos attached to contacts</td>
-                        <td>Visual context for visits</td>
-                        <td><span class="badge local">Device only</span></td>
+                        <td>Contact addresses (for map pins)</td>
+                        <td>Geocoding to convert addresses into map pins</td>
+                        <td><span class="badge partial">Sent to Apple Maps / Google Maps when you open the map</span></td>
                     </tr>
                     <tr>
                         <td>Encrypted backups</td>
@@ -190,87 +199,101 @@
                 </tbody>
             </table>
         </div>
+        <p><em>About the map:</em> FSC does not run its own mapping service. When you open the map view, FSC asks your device's built-in mapping service — Apple Maps on iOS, Google Maps on Android — to look up the addresses you've entered and return pin coordinates. That address lookup happens through the same mapping service your phone uses for everything else. We do not see those lookups. Apple's and Google's handling of those lookups is governed by their privacy policies, linked below.</p>
 
         <h2>What we collect and send to our servers</h2>
-        <p>FSC collects anonymous product analytics and crash diagnostics to find bugs, fix problems, and understand which features are helpful. This data is processed by third-party analytics and diagnostics services based in the United States.</p>
+        <p>FSC collects anonymous product analytics and crash diagnostics to find bugs, fix problems, and understand which features are helpful. This data is processed by <strong>PostHog Inc.</strong> (United States) on our behalf.</p>
 
         <h3>What is collected</h3>
         <ul>
-            <li><strong>Product events</strong> — which features you use (for example: opening the map, logging a visit, tapping a contact card). We collect <em>that</em> an event happened, not the content. We do not collect contact names, visit notes, addresses, phone numbers, or photos.</li>
-            <li><strong>App lifecycle events</strong> — app opens, backgrounds, crashes.</li>
-            <li><strong>Crash and error reports</strong> — the error type, a sanitized error message, and a sanitized stack trace. Our sanitizer strips contact names, visit notes, addresses, email addresses, and phone numbers before anything is transmitted.</li>
+            <li><strong>Product events</strong> — which features you use (for example: opening the map, logging a visit, tapping a contact card). We collect <em>that</em> an event happened, not its content. We do not collect contact names, visit notes, addresses, phone numbers, or photos.</li>
+            <li><strong>App lifecycle events</strong> — app opens, backgrounds, crashes, cold-start performance.</li>
+            <li><strong>Crash and error reports</strong> — the error type, a sanitized error message, and a sanitized stack trace. Our error sanitizer strips contact names, visit notes, addresses, email addresses, and phone numbers before anything is transmitted, and the sanitizer is covered by automated tests that run on every build.</li>
             <li><strong>A stable anonymous identifier</strong> — a random identifier generated on your device, used to understand unique-user counts and to link events from the same install. It is not tied to your real identity unless you sign in.</li>
-            <li><strong>Device metadata</strong> — app version, operating system, OS version, locale, and whether the app is running in a development or production build.</li>
+            <li><strong>Device metadata</strong> — app version, build channel (production or alpha/beta), operating system and version, device model, locale, available memory, available disk space, network type at launch, battery state, screen size, and whether Low Power Mode (iOS) is on. This is the kind of information that helps us reproduce a bug when you report one.</li>
             <li><strong>If you sign in</strong> — your display name, email address, and which sign-in provider you chose. This is how we can reach you if you contact support.</li>
         </ul>
 
         <h3>What is NOT collected</h3>
         <ul>
-            <li>No contact names, addresses, phone numbers, or email addresses from the records you create</li>
+            <li>No contact names, addresses, phone numbers, or email addresses from the records you create in FSC</li>
             <li>No visit notes, conversation content, or literature titles you log</li>
             <li>No photos you attach to contacts</li>
-            <li>No precise location data</li>
+            <li>No precise GPS location data</li>
             <li>No advertising identifiers — we don't run ads or share data with advertisers</li>
+            <li>No third-party tracking pixels or fingerprinting</li>
         </ul>
 
         <h3>How to turn it off</h3>
         <p>Open <strong>Settings → Diagnostics</strong> and turn off <strong>"Send diagnostic data."</strong> When it's off, no analytics events, crash reports, or errors are transmitted. Product events already collected remain on the server unless you request deletion (see "Your rights" below).</p>
 
         <h2>Device permissions</h2>
-        <p><strong>Contacts (READ_CONTACTS)</strong> — requested only when you use the "Import Contact" feature. FSC reads the selected contact's name, phone, email, and address to create a new FSC record. No contact data is transmitted off your device.</p>
-        <p><strong>Location (ACCESS_FINE_LOCATION / ACCESS_COARSE_LOCATION)</strong> — requested only when you open the Map view. Your location is used to display your position alongside your FSC contacts. Location data never leaves your device.</p>
+        <p><strong>Contacts (READ_CONTACTS)</strong> — requested only when you use the "Import from device contacts" feature. FSC reads the selected contact's name, phone, email, and address to create a new FSC record. No contact data is transmitted off your device through us.</p>
+        <p><strong>Location (when in use)</strong> — requested only when you open the Map view. Your GPS coordinates are used on your device to display your blue-dot position. We do not transmit your GPS location. (Note: the addresses you've entered for your contacts are sent to your device's mapping service to be geocoded into pins — see the map note above.)</p>
+        <p><strong>Notifications</strong> — requested when you set your first reminder. Used only for local reminders that fire on your device. No notification content is sent to any server.</p>
         <p><strong>Photos (NSPhotoLibraryUsageDescription)</strong> — requested only when you attach a photo to a contact. Photos stay on your device.</p>
 
         <h2>Encryption</h2>
         <ul>
-            <li><strong>On your device</strong>, FSC's database is encrypted using industry-standard symmetric encryption (AES-256).</li>
-            <li><strong>Your backups</strong> are encrypted with XChaCha20-Poly1305, protected by a recovery phrase that only you know. We cannot read, recover, or restore your backups without that phrase.</li>
+            <li><strong>On your device</strong>, FSC's database is encrypted at rest using SQLCipher with AES-256.</li>
+            <li><strong>Your backups</strong> are encrypted with XChaCha20-Poly1305, protected by a six-word recovery phrase that only you know. We cannot read, recover, or restore your backups without that phrase. Choose your phrase carefully and write it down — if you lose it, your backup is unreadable, including by us.</li>
             <li><strong>In transit</strong>, analytics and diagnostic data are encrypted using TLS before leaving your device.</li>
         </ul>
 
         <h2>Authentication</h2>
-        <p>FSC uses <strong>Apple Sign-In</strong> or <strong>Google Sign-In</strong> to authenticate you. When you choose a provider, you interact directly with Apple or Google — not with us. We receive only your email address, display name, and a stable provider identifier. Apple's and Google's use of this data is governed by their own privacy policies:</p>
+        <p>FSC uses <strong>Sign in with Apple</strong> or <strong>Sign in with Google</strong> to authenticate you. When you choose a provider, you interact directly with Apple or Google — not with us. We receive only your email address, display name, and a stable provider identifier. Apple's and Google's use of this data is governed by their own privacy policies:</p>
         <ul>
             <li><a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a></li>
             <li><a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
         </ul>
 
         <h2>Third-party services</h2>
-        <p>FSC relies on a small set of third-party services, all of which are bound by standard data-protection agreements with us:</p>
+        <p>FSC relies on a small set of third-party services, each performing a narrow function. We do not sell your data to any of them. None of them receive your ministry data (contacts, visit notes, literature records, photos) from us.</p>
         <ul>
-            <li><strong>A product analytics and crash diagnostics service</strong> (United States) — receives the data described in "What we collect and send to our servers" above.</li>
-            <li><strong>A third-party mapping service</strong> — renders the map in the contact map view. Your location is used on-device for map centering; the mapping service receives only the tile requests needed to draw the map.</li>
-            <li><strong>Apple and Google identity services</strong> — used for sign-in, as described above.</li>
+            <li><strong>PostHog Inc.</strong> (United States) — product analytics and crash diagnostics, processing the data described in "What we collect and send to our servers" above. <a href="https://posthog.com/privacy">PostHog privacy policy</a>.</li>
+            <li><strong>Apple Maps / MapKit</strong> (Apple Inc., United States) — provides the map view and the address-to-pin geocoding on iOS. The addresses you've entered for your contacts are sent to Apple to be turned into pins when you open the map.</li>
+            <li><strong>Google Maps</strong> (Google LLC, United States) — provides the map view and the address-to-pin geocoding on Android. Same behavior as Apple Maps above.</li>
+            <li><strong>Apple Sign In / Google Sign In</strong> — identity providers as described above.</li>
+            <li><strong>Zendesk Inc.</strong> (United States) — runs our help center at <a href="https://help.returnvisits.org">help.returnvisits.org</a> and routes any email you send to our support addresses. If you contact support, your email address and the content of your message are stored in Zendesk for as long as we operate.</li>
+            <li><strong>Loops</strong> (Loops Email Inc., United States) — handles our waitlist and launch-announcement emails. If you sign up on the landing page, your email address is stored in Loops and used only to send the updates you signed up for. You can unsubscribe at any time from any email we send.</li>
         </ul>
         <p>We do not sell your data. We do not share your data with advertisers. We do not use your data to build advertising profiles.</p>
 
         <h2>Your rights</h2>
-        <p>Regardless of where you live, you have the following rights over your data. Email <a href="mailto:hello@returnvisits.org">hello@returnvisits.org</a> to exercise any of them. We will respond within 30 days.</p>
+        <p>Regardless of where you live, you have the following rights over your data. Email <a href="mailto:security@returnvisits.org">security@returnvisits.org</a> to exercise any of them. We will respond within 30 days.</p>
         <ul>
-            <li><strong>Right to access</strong> — request a copy of the data we have associated with your installation.</li>
+            <li><strong>Right to access</strong> — request a copy of the data we have associated with your installation or account.</li>
             <li><strong>Right to correction</strong> — most data is editable directly in the app. For account-level data, contact us.</li>
-            <li><strong>Right to deletion</strong> — request deletion of your analytics and diagnostic data from our servers. Uninstalling the app also deletes all on-device data. If you had signed in, email us to have your account identifiers removed from analytics.</li>
+            <li><strong>Right to deletion</strong> — request deletion of your analytics, diagnostic, and account data from our servers. Uninstalling the app also deletes all on-device data. If you had signed in, email us to have your account identifiers removed from analytics.</li>
             <li><strong>Right to export</strong> — your ministry data can be exported from the app via the Backup feature, which produces an encrypted file you control. For analytics data associated with your installation, contact us.</li>
             <li><strong>Right to opt out</strong> — turn off "Send diagnostic data" in Settings at any time. No analytics or crash reports are sent while it's off.</li>
             <li><strong>Right to object</strong> — you may object to any processing of your data. Contact us to do so.</li>
+            <li><strong>Right to unsubscribe</strong> — every email we send via Loops includes a one-click unsubscribe link.</li>
         </ul>
-        <p>If you are in the European Economic Area, United Kingdom, Switzerland, or a U.S. state with comprehensive privacy legislation (California, Colorado, Connecticut, Utah, Virginia, etc.), the rights above apply with equivalent force under your local law. You may also have the right to lodge a complaint with your local data protection authority.</p>
+        <p>If you are in the European Economic Area, United Kingdom, Switzerland, or a U.S. state with comprehensive privacy legislation (California, Colorado, Connecticut, Utah, Virginia, Texas, Oregon, and others), the rights above apply with equivalent force under your local law. You may also have the right to lodge a complaint with your local data protection authority.</p>
 
         <h2>Children's privacy</h2>
         <p>FSC is not directed at children under 13 and we do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us and we will delete it promptly.</p>
 
         <h2>Future versions</h2>
-        <p>FSC's v2.0 will introduce optional cloud backup and cross-device sync. When these features launch, they will be opt-in and end-to-end encrypted — your contacts, visit notes, and other ministry data will be encrypted on your device before being uploaded, and our servers will never see the unencrypted content. We will update this policy before those features ship.</p>
+        <p>FSC v2.0 will introduce optional cloud features. When these features launch, the rules will be:</p>
+        <ul>
+            <li><strong>Cloud backup</strong> will be end-to-end encrypted — your contacts, visit notes, and other ministry data will be encrypted on your device with a key only you hold, then uploaded as opaque encrypted blobs to <strong>Microsoft Azure Blob Storage</strong> (United States). Our servers will never see the unencrypted content, and we will not be able to recover your backup without your recovery phrase.</li>
+            <li><strong>Cross-device sync</strong> will use the same end-to-end-encrypted model. We are designing this so that even an FSC employee with full server access cannot read your data.</li>
+            <li><strong>Account creation</strong> will be handled by <strong>Supabase</strong> (Supabase Inc., United States) on our behalf, using the same Apple Sign In / Google Sign In flow you use today.</li>
+            <li><strong>Premium subscriptions</strong> will be processed by <strong>RevenueCat</strong> and <strong>Stripe</strong> for billing infrastructure; we will not store or see your full payment card data.</li>
+        </ul>
+        <p>This policy will be updated and dated <em>before</em> any of those features become available to you, and material changes will be communicated in-app and by email if you've signed up for launch updates.</p>
 
         <h2>Changes to this policy</h2>
-        <p>We will update this page when the policy changes. Material changes will be communicated through the app before they take effect.</p>
+        <p>We will update this page when the policy changes. Material changes will be communicated through the app and by email (if you have an account or have signed up for updates) before they take effect. The "Last updated" date at the top of this page always reflects the most recent change.</p>
 
         <h2>Contact us</h2>
-        <p>Questions, concerns, or requests about this privacy policy? Email us at <a href="mailto:hello@returnvisits.org">hello@returnvisits.org</a>.</p>
+        <p>Questions, concerns, or requests about this privacy policy? Email <a href="mailto:security@returnvisits.org">security@returnvisits.org</a>. For general questions, <a href="mailto:hello@returnvisits.org">hello@returnvisits.org</a>.</p>
     </div>
 
     <div class="footer">
-        <a href="https://returnvisits.org">Field Service Companion</a> · Return Visits · Atlanta, GA
+        <a href="https://returnvisits.org">Field Service Companion</a> · Vineyard Software LLC · Atlanta, GA
     </div>
 </body>
 </html>
