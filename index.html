@@ -158,76 +158,98 @@
       background: var(--neutral-200);
     }
 
-    .subscribe-form {
+    /* ── Loops form embed (newsletter-* classes are Loops's; restyled with FSC tokens) ── */
+    .newsletter-form-container { width: 100%; }
+
+    .newsletter-form {
       display: flex;
       flex-direction: column;
       gap: 8px;
       width: 100%;
+      margin: 0;
     }
 
-    .subscribe-label {
-      font-size: 13px;
-      color: var(--neutral-500);
-      text-align: center;
-      margin-bottom: 4px;
-    }
-
-    .subscribe-row {
-      display: flex;
-      gap: 8px;
-      width: 100%;
-    }
-
-    .subscribe-input {
-      flex: 1;
-      min-width: 0;
+    .newsletter-form-input {
       padding: 12px 14px;
       border: 1px solid var(--neutral-200);
       border-radius: 10px;
-      font-family: inherit;
+      font-family: 'Noto Sans', sans-serif;
       font-size: 14px;
       color: var(--neutral-900);
       background: var(--neutral-0);
+      width: 100%;
+      box-sizing: border-box;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .subscribe-input:focus {
+    .newsletter-form-input:focus {
       outline: none;
       border-color: var(--primary-400);
       box-shadow: 0 0 0 3px rgba(46, 107, 156, 0.12);
     }
 
-    .subscribe-input::placeholder {
-      color: var(--neutral-400);
-    }
+    .newsletter-form-input::placeholder { color: var(--neutral-400); }
 
-    .subscribe-button {
+    .newsletter-form-button,
+    .newsletter-loading-button {
       padding: 12px 18px;
-      background: var(--neutral-0);
-      color: var(--primary-600);
-      border: 1px solid var(--primary-200);
+      background: var(--primary-500);
+      color: #fff;
+      border: none;
       border-radius: 10px;
-      font-family: inherit;
+      font-family: 'Noto Sans', sans-serif;
       font-size: 14px;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
-      white-space: nowrap;
+      width: 100%;
+      box-sizing: border-box;
+      transition: background 0.2s ease, transform 0.1s ease;
     }
 
-    .subscribe-button:hover {
-      background: var(--primary-50);
-      border-color: var(--primary-400);
+    .newsletter-form-button:hover { background: var(--primary-600); }
+    .newsletter-form-button:active { transform: scale(0.97); }
+    .newsletter-loading-button { opacity: 0.7; cursor: default; }
+    .newsletter-loading-button:hover { background: var(--primary-500); }
+
+    .newsletter-success,
+    .newsletter-error {
+      display: none;
+      text-align: center;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin-top: 4px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
-    .subscribe-button:active {
-      transform: scale(0.97);
+    .newsletter-success { background: rgba(59, 138, 90, 0.08); color: var(--success); }
+    .newsletter-error { background: rgba(192, 57, 43, 0.08); color: #C0392B; }
+
+    .newsletter-success-message,
+    .newsletter-error-message {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 14px;
+      margin: 0;
     }
 
-    @media (max-width: 420px) {
-      .subscribe-row { flex-direction: column; }
-      .subscribe-button { width: 100%; }
+    .newsletter-back-button {
+      display: none;
+      margin: 12px auto 0;
+      background: none;
+      border: none;
+      color: var(--neutral-500);
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 13px;
+      cursor: pointer;
     }
+
+    .newsletter-back-button:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer { padding: 28px 24px; text-align: center; border-top: 1px solid var(--neutral-100); background: var(--neutral-0); }
+    footer p { font-size: 12px; color: var(--neutral-400); }
+    footer a { color: var(--neutral-500); text-decoration: none; }
+    footer a:hover { color: var(--primary-500); text-decoration: underline; }
 
     /* ── Features ── */
     .features {
@@ -328,37 +350,34 @@
       <div class="cta-divider">or</div>
 
       <!--
-        Mailchimp naked-form embed. To wire this up:
-          1. In your Mailchimp account, open the audience you want signups to
-             land in → Signup forms → Embedded forms → "Naked" / "Unstyled".
-          2. Copy the <form action="..."> URL into the `action` attribute below.
-          3. Copy the bot-honeypot `<input type="text" name="b_..._..." ...>` line
-             from the same embed code and replace the placeholder honeypot below
-             (the name attribute must match your audience exactly).
-        Until those two strings are swapped in, the form will not actually
-        submit — it will silently 404 from Mailchimp.
+        Loops form embed (Form ID cmpc0zaiu001h0jxlx2xz1pu8, user group "waitlist").
+        Default Loops inline styles have been stripped; styling lives in the
+        main stylesheet under "Loops form embed". The submission script at the
+        end of <body> is copied verbatim from Loops's embed and must stay in
+        sync with what Loops generates. To regenerate either piece:
+            Loops dashboard → Forms → edit this form → Copy HTML.
       -->
-      <form class="subscribe-form"
-            action="https://YOUR-DC.list-manage.com/subscribe/post?u=YOUR_USER_ID&amp;id=YOUR_LIST_ID"
-            method="post"
-            target="_blank"
-            novalidate>
-        <div class="subscribe-label">Stay in the loop. Get launch updates by email.</div>
-        <div class="subscribe-row">
-          <input class="subscribe-input"
+      <div class="newsletter-form-container">
+        <form class="newsletter-form"
+              action="https://app.loops.so/api/newsletter-form/cmpc0zaiu001h0jxlx2xz1pu8"
+              method="POST">
+          <input class="newsletter-form-input"
                  type="email"
-                 name="EMAIL"
-                 required
+                 name="newsletter-form-input"
                  placeholder="you@example.com"
+                 required
                  aria-label="Email address">
-          <button class="subscribe-button" type="submit">Subscribe</button>
+          <button type="submit" class="newsletter-form-button">Join Waitlist</button>
+          <button type="button" class="newsletter-loading-button">Please wait…</button>
+        </form>
+        <div class="newsletter-success">
+          <p class="newsletter-success-message">Thanks — we'll let you know when we launch.</p>
         </div>
-        <!-- Mailchimp bot-honeypot. Replace the name= attribute with the one
-             from your audience-specific embed code. -->
-        <div style="position:absolute;left:-5000px" aria-hidden="true">
-          <input type="text" name="b_YOUR_USER_ID_YOUR_LIST_ID" tabindex="-1" value="">
+        <div class="newsletter-error">
+          <p class="newsletter-error-message">Something went wrong. Please try again.</p>
         </div>
-      </form>
+        <button class="newsletter-back-button" type="button">&larr; Back</button>
+      </div>
     </div>
   </section>
 
@@ -379,4 +398,116 @@
         <div class="feature-card">
           <div class="feature-icon">📴</div>
           <h3>Works Offline</h3>
-          <p>Full functionality without an internet connection. Perfect for the territory, wherever it t
+          <p>Full functionality without an internet connection. Perfect for the territory, wherever it takes you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Vineyard Software LLC · <a href="/privacy/">Privacy</a></p>
+  </footer>
+
+  <script>
+    /* Loops form handler — copied verbatim from Loops's embed snippet.
+       Hooks .newsletter-form submit + .newsletter-back-button click on every
+       .newsletter-form-container in the document. Includes a 60s client-side
+       rate limit via localStorage to deter button mashing. */
+    function submitHandler(event) {
+      event.preventDefault();
+      var container = event.target.parentNode;
+      var form = container.querySelector(".newsletter-form");
+      var formInput = container.querySelector(".newsletter-form-input");
+      var success = container.querySelector(".newsletter-success");
+      var errorContainer = container.querySelector(".newsletter-error");
+      var errorMessage = container.querySelector(".newsletter-error-message");
+      var backButton = container.querySelector(".newsletter-back-button");
+      var submitButton = container.querySelector(".newsletter-form-button");
+      var loadingButton = container.querySelector(".newsletter-loading-button");
+
+      const rateLimit = () => {
+        errorContainer.style.display = "flex";
+        errorMessage.innerText = "Too many signups, please try again in a little while";
+        submitButton.style.display = "none";
+        formInput.style.display = "none";
+        backButton.style.display = "block";
+      };
+
+      var time = new Date();
+      var timestamp = time.valueOf();
+      var previousTimestamp = localStorage.getItem("loops-form-timestamp");
+
+      if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
+        rateLimit();
+        return;
+      }
+      localStorage.setItem("loops-form-timestamp", timestamp);
+
+      submitButton.style.display = "none";
+      loadingButton.style.display = "flex";
+
+      var formBody = "userGroup=waitlist&mailingLists=&email="
+        + encodeURIComponent(formInput.value);
+
+      fetch(event.target.action, {
+        method: "POST",
+        body: formBody,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      })
+        .then((res) => [res.ok, res.json(), res])
+        .then(([ok, dataPromise, res]) => {
+          if (ok) {
+            success.style.display = "flex";
+            form.reset();
+          } else {
+            dataPromise.then(data => {
+              errorContainer.style.display = "flex";
+              errorMessage.innerText = data.message ? data.message : res.statusText;
+            });
+          }
+        })
+        .catch(error => {
+          if (error.message === "Failed to fetch") {
+            rateLimit();
+            return;
+          }
+          errorContainer.style.display = "flex";
+          if (error.message) errorMessage.innerText = error.message;
+          localStorage.setItem("loops-form-timestamp", "");
+        })
+        .finally(() => {
+          formInput.style.display = "none";
+          loadingButton.style.display = "none";
+          backButton.style.display = "block";
+        });
+    }
+
+    function resetFormHandler(event) {
+      var container = event.target.parentNode;
+      var formInput = container.querySelector(".newsletter-form-input");
+      var success = container.querySelector(".newsletter-success");
+      var errorContainer = container.querySelector(".newsletter-error");
+      var errorMessage = container.querySelector(".newsletter-error-message");
+      var backButton = container.querySelector(".newsletter-back-button");
+      var submitButton = container.querySelector(".newsletter-form-button");
+
+      success.style.display = "none";
+      errorContainer.style.display = "none";
+      errorMessage.innerText = "Oops! Something went wrong, please try again";
+      backButton.style.display = "none";
+      formInput.style.display = "flex";
+      submitButton.style.display = "flex";
+    }
+
+    var formContainers = document.getElementsByClassName("newsletter-form-container");
+    for (var i = 0; i < formContainers.length; i++) {
+      var formContainer = formContainers[i];
+      if (formContainer.classList.contains("newsletter-handlers-added")) continue;
+      formContainer.querySelector(".newsletter-form").addEventListener("submit", submitHandler);
+      formContainer.querySelector(".newsletter-back-button").addEventListener("click", resetFormHandler);
+      formContainer.classList.add("newsletter-handlers-added");
+    }
+  </script>
+
+</body>
+</html>
