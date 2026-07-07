@@ -3,469 +3,458 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Field Service Companion — Remember the person, continue the conversation</title>
-  <meta name="description" content="A privacy-first mobile companion for Jehovah's Witnesses to remember the people they meet and continue meaningful conversations.">
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <title>Field Service Companion — Continue the conversation</title>
+  <meta name="description" content="A privacy-first mobile companion for Jehovah's Witnesses to remember the people they meet and continue meaningful conversations. Free on the App Store.">
+  <meta name="theme-color" content="#2E6B9C">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="canonical" href="https://returnvisits.org/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Field Service Companion — Continue the conversation">
+  <meta property="og:description" content="An easy to use, helpful app so you can fully accomplish your ministry. Remember the people you meet and the conversations to continue.">
+  <meta property="og:image" content="https://returnvisits.org/og-image.png">
+  <meta property="og:url" content="https://returnvisits.org/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Field Service Companion — Continue the conversation">
+  <meta name="twitter:description" content="An easy to use, helpful app so you can fully accomplish your ministry. Remember the people you meet and the conversations to continue.">
+  <meta name="twitter:image" content="https://returnvisits.org/og-image.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ── Design tokens (from lib/core/theme + fsc-design-language.jsx) ── */
     :root {
-      --primary-50: #EDF3F8;
-      --primary-100: #D4E4F0;
-      --primary-200: #A9C9E1;
-      --primary-300: #7EAED2;
-      --primary-400: #4F8FBF;
-      --primary-500: #2E6B9C;
-      --primary-600: #245781;
-      --primary-700: #1C4366;
-      --primary-800: #142F4B;
-      --primary-900: #0C1B30;
-      --secondary-400: #D99558;
-      --secondary-500: #C47A38;
-      --neutral-0: #FFFFFF;
-      --neutral-50: #F7F8FA;
-      --neutral-100: #ECEEF2;
-      --neutral-200: #D8DBE2;
-      --neutral-300: #B8BDC9;
-      --neutral-400: #949BAD;
-      --neutral-500: #6F7789;
-      --neutral-600: #555D6E;
-      --neutral-700: #3D4452;
-      --neutral-800: #272C38;
-      --neutral-900: #14171F;
-      --success: #3B8A5A;
+      --p50:#EDF3F8; --p100:#D4E4F0; --p200:#A9C9E1; --p300:#7EAED2; --p400:#4F8FBF;
+      --p500:#2E6B9C; --p600:#245781; --p700:#1C4366; --p800:#142F4B; --p900:#0C1B30;
+      --s50:#FDF6F0; --s100:#F9E8D8; --s200:#F2D0B0; --s300:#E8B484;
+      --s400:#D99558; --s500:#C47A38; --s600:#A5632C; --s700:#824D22;
+      --n0:#FFFFFF; --n50:#F7F8FA; --n100:#ECEEF2; --n200:#D8DBE2; --n300:#8B92A4;
+      --n400:#6E7688; --n500:#6D7587; --n600:#555D6E; --n700:#3D4452; --n800:#272C38; --n900:#14171F;
+      --success:#3B8A5A; --warning:#C47A38; --error:#C0392B;
+      --font: 'Noto Sans', system-ui, sans-serif;
+      --maxw: 1180px;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body {
-      font-family: 'Noto Sans', sans-serif;
-      background: var(--neutral-0);
-      color: var(--neutral-900);
+      font-family: var(--font);
+      background: var(--s50);
+      color: var(--n900);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
+    img { max-width:100%; }
+    a { color:inherit; }
+    .container { max-width: var(--maxw); margin:0 auto; }
+
+    /* focus-visible a11y */
+    a:focus, button:focus { outline:none; }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--p500);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 18px clamp(20px, 5vw, 64px);
+      gap: 16px;
+    }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .brand img { display:block; width: clamp(30px, 3.2vw, 35px); height: clamp(30px, 3.2vw, 35px); }
+    .brand-name-full { font-size:17px; font-weight:700; color:var(--n900); letter-spacing:-0.3px; }
+    .brand-name-short { display:none; font-size:16px; font-weight:700; color:var(--n900); letter-spacing:-0.3px; }
+    .nav-links { display:flex; align-items:center; gap: clamp(14px, 2.4vw, 34px); }
+    .nav-links a.nav-link {
+      font-size:14.5px; font-weight:500; color:var(--n600); text-decoration:none; white-space:nowrap;
+    }
+    .nav-links a.nav-link:hover { color: var(--p600); }
+    .pill-btn {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 9px 20px; border-radius:999px; background: var(--p500); color:#fff;
+      font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap;
+      transition: background .15s ease;
+    }
+    .pill-btn:hover { background: var(--p600); }
+
+    @media (max-width: 620px) {
+      .brand-name-full { display:none; }
+      .brand-name-short { display:inline; }
+      .nav-links a.nav-link { display:none; }
+      .nav { padding: 14px 20px; }
+    }
 
     /* ── Hero ── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 24px 80px;
-      position: relative;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 0%, var(--primary-50) 0%, transparent 70%),
-        var(--neutral-0);
+    .hero { position:relative; overflow:hidden; padding: 24px clamp(20px, 5vw, 64px) 48px; }
+    .glow {
+      position:absolute; border-radius:50%; pointer-events:none;
+      background: radial-gradient(circle, var(--s200) 0%, rgba(242,208,176,0) 70%);
+    }
+    .glow-1 { width: 900px; height:900px; right:-220px; top:-260px; }
+    .glow-2 { width: 520px; height:520px; left:60px; bottom:-260px; opacity:.7; }
+    .hero-inner {
+      position:relative; display:flex; flex-wrap:wrap; align-items:center; gap: clamp(24px, 5vw, 40px);
+      padding-top: 24px;
+    }
+    .hero-copy { flex: 1 1 480px; max-width:560px; }
+    .hero-art { flex: 1 1 380px; min-height: 320px; display:flex; align-items:center; justify-content:center; position:relative; }
+    .hero-art-glow {
+      position:absolute; width: 70%; max-width:540px; aspect-ratio:1/1; border-radius:50%;
+      background: radial-gradient(circle, var(--s100) 0%, rgba(249,232,216,0) 68%);
+    }
+    .hero-art img { position:relative; width: clamp(180px, 34vw, 420px); filter: drop-shadow(0 28px 56px rgba(46,107,156,.24)); opacity:.97; }
+
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px;
+      background: var(--s100); color: var(--s600); font-size:13px; font-weight:600; margin-bottom:24px;
+    }
+    .eyebrow img { width:18px; height:18px; }
+    h1.hero-title {
+      font-size: clamp(34px, 4.6vw, 60px); font-weight:300; line-height:1.1; letter-spacing:-1.4px;
+      margin-bottom: 22px; color: var(--n900);
+    }
+    h1.hero-title strong { font-weight:700; color: var(--p600); }
+    .hero-body { font-size: clamp(16px, 1.6vw, 20px); line-height:1.6; color: var(--n600); margin-bottom:30px; max-width:470px; }
+
+    /* ── Get the app cluster (real Apple badge + quiet Play "coming soon") ── */
+    .get-app { display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
+    .get-app.centered { align-items:center; }
+    .store-row { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+    .get-app.centered .store-row { justify-content:center; }
+    .apple-badge img { display:block; width: 168px; height:auto; }
+    .play-soon {
+      display:inline-flex; align-items:center; gap:8px;
+      height:54px; padding: 0 16px; border-radius:11px;
+      border: 1.5px dashed var(--n300); color: var(--n500);
+      font-size:13px; font-weight:500; line-height:1.25; white-space:nowrap;
+      background: transparent;
+    }
+    .play-soon .g-icon { font-size:15px; line-height:1; }
+
+    /* ── How it works ── */
+    .how-it-works {
+      padding: clamp(42px, 8vw, 84px) clamp(20px, 5vw, 64px);
+      background: var(--n0); text-align:center; border-top: 1px solid var(--s100);
+    }
+    .eyebrow-label {
+      font-size:12px; font-weight:700; letter-spacing:1px; color: var(--s500); margin-bottom:14px;
+    }
+    h2.section-title {
+      font-size: clamp(27px, 3.4vw, 38px); font-weight:300; letter-spacing:-0.6px; color: var(--n900);
+      margin-bottom: clamp(28px, 4vw, 52px);
+    }
+    .steps { display:flex; flex-wrap:wrap; gap: clamp(24px, 4vw, 48px); max-width:980px; margin:0 auto; text-align:left; }
+    .step { flex: 1 1 260px; display:flex; gap:16px; align-items:flex-start; }
+    .step-n {
+      flex: 0 0 auto; width:40px; height:40px; border-radius:50%; background: var(--s100); color: var(--s600);
+      display:flex; align-items:center; justify-content:center; font-size:17px; font-weight:700;
+    }
+    .step-title { font-size:18px; font-weight:600; color: var(--n900); margin-bottom:6px; }
+    .step-body { font-size:15px; line-height:1.55; color: var(--n600); }
+
+    /* ── Feature rows ── */
+    .feature-row {
+      display:flex; align-items:center; padding: clamp(40px, 8vw, 72px) clamp(20px, 5vw, 64px);
+    }
+    .feature-row.alt { background: var(--n0); }
+    .feature-row-inner {
+      display:flex; align-items:center; gap: clamp(32px, 6vw, 80px); width:100%;
+      max-width: var(--maxw); margin:0 auto;
+    }
+    .feature-row.flip .feature-row-inner { flex-direction: row-reverse; }
+    .feature-copy { flex: 1 1 420px; max-width:480px; }
+    .feature-tag { font-size:12px; font-weight:700; letter-spacing:1px; color: var(--s500); margin-bottom:16px; }
+    .feature-title { font-size: clamp(24px, 2.9vw, 38px); font-weight:300; line-height:1.2; letter-spacing:-0.7px; color: var(--n900); margin-bottom:18px; }
+    .feature-body { font-size: clamp(15px, 1.2vw, 17px); line-height:1.65; color: var(--n600); }
+    .feature-art { flex: 0 0 auto; position:relative; display:flex; justify-content:center; align-items:center; margin: 0 auto; }
+    .feature-art-bg {
+      position:absolute; width:300px; height:300px; border-radius:40px; top:50%; left:50%;
+      transform: translate(-50%,-50%) rotate(-4deg);
+      background: var(--p50);
+    }
+    .feature-row.flip .feature-art-bg { background: var(--s50); }
+
+    /* phone frame */
+    .phone {
+      width: 236px; background:#0c0f14; border-radius:46px; padding:11px;
+      box-shadow: 0 2px 4px rgba(20,30,50,.18), 0 30px 60px -18px rgba(20,40,70,.45);
+      position:relative;
+    }
+    .phone-screen { width:100%; border-radius:35px; overflow:hidden; background:var(--n50); position:relative; }
+    .dynamic-island {
+      position:absolute; top:9px; left:50%; transform:translateX(-50%);
+      width:84px; height:24px; background:#05080c; border-radius:14px; z-index:3;
+    }
+    .phone-screen img { display:block; width:100%; height:auto; }
+
+    @media (max-width: 900px) {
+      .feature-row-inner, .feature-row.flip .feature-row-inner { flex-direction:column; text-align:center; }
+      .feature-copy { max-width:400px; }
+      .feature-art { margin-top:10px; }
+      .phone { width:220px; }
+      .feature-art-bg { width:250px; height:250px; }
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--primary-300), var(--primary-500), var(--primary-300));
+    /* ── Trust strip ── */
+    .trust-strip { padding: clamp(38px, 6vw, 64px) clamp(20px, 5vw, 64px); background: var(--p700); color:#fff; text-align:center; }
+    .trust-eyebrow { font-size:12px; font-weight:700; letter-spacing:1px; color: var(--s300); margin-bottom:10px; }
+    .trust-body { font-size: clamp(16px, 1.6vw, 19px); font-weight:300; line-height:1.5; letter-spacing:-0.2px; max-width:880px; margin:0 auto; }
+
+    /* ── FAQ ── */
+    .faq { padding: clamp(42px, 8vw, 84px) clamp(20px, 5vw, 64px); background: var(--n0); border-top:1px solid var(--s100); }
+    .faq-inner { max-width:760px; margin:0 auto; }
+    .faq-head { text-align:center; margin-bottom: clamp(26px, 4vw, 44px); }
+    .faq-item { padding: clamp(18px, 2.4vw, 22px) 0; border-top:1px solid var(--n100); }
+    .faq-item:first-of-type { border-top:none; }
+    .faq-q { font-size: clamp(16px, 1.4vw, 18px); font-weight:600; color: var(--n900); margin-bottom:8px; }
+    .faq-a { font-size: clamp(14.5px, 1.2vw, 16px); line-height:1.6; color: var(--n600); }
+
+    /* ── Final CTA ── */
+    .final-cta {
+      padding: clamp(46px, 9vw, 90px) clamp(20px, 5vw, 64px); text-align:center;
+      background: radial-gradient(ellipse 80% 100% at 50% 0%, var(--s100) 0%, var(--s50) 72%);
     }
-
-    /* ── Logo ── */
-    .logo {
-      width: 72px;
-      height: 72px;
-      margin-bottom: 32px;
-      animation: fadeUp 0.8s ease both;
-      filter: drop-shadow(0 4px 16px rgba(46, 107, 156, 0.25));
+    .final-cta img.mark { width: clamp(56px, 6vw, 74px); margin: 0 auto 20px; display:block; }
+    .final-cta h2 {
+      font-size: clamp(30px, 4.4vw, 46px); font-weight:300; letter-spacing:-1px; line-height:1.12; margin-bottom:14px; color: var(--n900);
     }
-
-    /* ── Typography ── */
-    h1 {
-      font-size: clamp(28px, 5vw, 44px);
-      font-weight: 300;
-      letter-spacing: -0.025em;
-      line-height: 1.2;
-      color: var(--neutral-900);
-      max-width: 600px;
-      margin-bottom: 16px;
-      animation: fadeUp 0.8s ease 0.1s both;
-    }
-
-    h1 strong {
-      font-weight: 600;
-      color: var(--primary-500);
-    }
-
-    .subtitle {
-      font-size: clamp(16px, 2.5vw, 19px);
-      color: var(--neutral-500);
-      line-height: 1.6;
-      max-width: 480px;
-      margin-bottom: 48px;
-      animation: fadeUp 0.8s ease 0.2s both;
-    }
-
-    /* ── CTAs ── */
-    .cta {
-      animation: fadeUp 0.8s ease 0.3s both;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      width: 100%;
-      max-width: 360px;
-    }
-
-    /* ── Loops form embed (newsletter-* classes are Loops's; restyled with FSC tokens) ── */
-    .newsletter-form-container { width: 100%; }
-
-    .newsletter-form {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 100%;
-      margin: 0;
-    }
-
-    .newsletter-form-input {
-      padding: 12px 14px;
-      border: 1px solid var(--neutral-200);
-      border-radius: 10px;
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 14px;
-      color: var(--neutral-900);
-      background: var(--neutral-0);
-      width: 100%;
-      box-sizing: border-box;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .newsletter-form-input:focus {
-      outline: none;
-      border-color: var(--primary-400);
-      box-shadow: 0 0 0 3px rgba(46, 107, 156, 0.12);
-    }
-
-    .newsletter-form-input::placeholder { color: var(--neutral-400); }
-
-    .newsletter-form-button,
-    .newsletter-loading-button {
-      padding: 12px 18px;
-      background: var(--primary-500);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      box-sizing: border-box;
-      transition: background 0.2s ease, transform 0.1s ease;
-    }
-
-    .newsletter-form-button:hover { background: var(--primary-600); }
-    .newsletter-form-button:active { transform: scale(0.97); }
-    .newsletter-loading-button { display: none; opacity: 0.7; cursor: default; }
-    .newsletter-loading-button:hover { background: var(--primary-500); }
-
-    .newsletter-success,
-    .newsletter-error {
-      display: none;
-      text-align: center;
-      padding: 12px 14px;
-      border-radius: 10px;
-      margin-top: 4px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .newsletter-success { background: rgba(59, 138, 90, 0.08); color: var(--success); }
-    .newsletter-error { background: rgba(192, 57, 43, 0.08); color: #C0392B; }
-
-    .newsletter-success-message,
-    .newsletter-error-message {
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 14px;
-      margin: 0;
-    }
-
-    .newsletter-back-button {
-      display: none;
-      margin: 12px auto 0;
-      background: none;
-      border: none;
-      color: var(--neutral-500);
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 13px;
-      cursor: pointer;
-    }
-
-    .newsletter-back-button:hover { text-decoration: underline; }
+    .final-cta h2 strong { font-weight:700; color: var(--p600); }
+    .final-cta p { font-size: clamp(16px, 1.6vw, 19px); line-height:1.6; color: var(--n600); margin: 0 auto clamp(26px, 3vw, 34px); max-width:520px; }
 
     /* ── Footer ── */
-    footer { padding: 28px 24px; text-align: center; border-top: 1px solid var(--neutral-100); background: var(--neutral-0); }
-    footer p { font-size: 12px; color: var(--neutral-400); }
-    footer a { color: var(--neutral-500); text-decoration: none; }
-    footer a:hover { color: var(--primary-500); text-decoration: underline; }
-
-    /* ── Features ── */
-    .features {
-      padding: 80px 24px;
-      background: var(--neutral-50);
-    }
-
-    .features-inner {
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
-    .features-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--primary-400);
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
-    }
-
-    .feature-card {
-      background: var(--neutral-0);
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-      border: 1px solid var(--neutral-100);
-    }
-
-    .feature-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: var(--primary-50);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      margin-bottom: 14px;
-    }
-
-    .feature-card h3 {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--neutral-900);
-      margin-bottom: 6px;
-    }
-
-    .feature-card p {
-      font-size: 14px;
-      color: var(--neutral-500);
-      line-height: 1.55;
-    }
-
-    /* ── Footer ── */
-    footer {
-      padding: 32px 24px;
-      text-align: center;
-      border-top: 1px solid var(--neutral-100);
-    }
-
-    footer p {
-      font-size: 13px;
-      color: var(--neutral-400);
-      line-height: 1.6;
-    }
-
-    /* ── Animations ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── Mobile ── */
-    @media (max-width: 500px) {
-      .hero { padding: 48px 20px 60px; }
-    }
+    footer { padding: clamp(34px, 5vw, 48px) clamp(20px, 5vw, 64px) clamp(30px, 4vw, 40px); background: var(--s50); border-top:1px solid var(--s100); }
+    .footer-top { display:flex; flex-wrap:wrap; gap:24px; justify-content:space-between; align-items:flex-start; }
+    .footer-brand { display:flex; align-items:center; gap:10px; }
+    .footer-brand img { width:32px; height:32px; }
+    .footer-brand-name { font-size:16px; font-weight:700; color:var(--n900); letter-spacing:-0.3px; }
+    .footer-brand-sub { font-size:12px; font-weight:500; color: var(--s500); letter-spacing:0.2px; }
+    .footer-cols { display:flex; gap:40px; flex-wrap:wrap; }
+    .footer-col-title { font-size:11px; font-weight:700; letter-spacing:0.8px; color: var(--s500); margin-bottom:10px; }
+    .footer-col a, .footer-col span { display:block; font-size:13px; color: var(--n600); margin-bottom:7px; text-decoration:none; }
+    .footer-col a:hover { color: var(--p600); text-decoration:underline; }
+    .footer-bottom { border-top:1px solid var(--s100); margin-top:22px; padding-top:18px; }
+    .footer-disclaimer { font-size:12px; color: var(--n500); line-height:1.6; max-width:640px; }
+    .footer-copyright { font-size:12px; color: var(--n400); margin-top:10px; }
   </style>
 </head>
 <body>
 
-  <section class="hero">
-    <img class="logo" src="logo.png" alt="Field Service Companion app icon — open door onto a warm kitchen interior">
+  <!-- ── Nav ── -->
+  <nav class="nav">
+    <a class="brand" href="#top" aria-label="Field Service Companion home">
+      <img src="assets/branding/return_visits_mark.svg" alt="" width="35" height="35">
+      <span class="brand-name-full">Field Service Companion</span>
+      <span class="brand-name-short">FSC</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="#features">Features</a>
+      <a class="nav-link" href="/privacy/">Privacy</a>
+      <a class="nav-link" href="https://help.returnvisits.org" target="_blank" rel="noopener">Support</a>
+      <a class="pill-btn" href="https://apps.apple.com/us/app/field-service-companion/id6776202918" target="_blank" rel="noopener">Get the app</a>
+    </div>
+  </nav>
 
-    <h1>Remember the person.<br><strong>Continue the conversation.</strong></h1>
-    <p class="subtitle">A privacy-first mobile companion for Jehovah's Witnesses. Track visits, not hours. Coming soon.</p>
+  <!-- ── Hero ── -->
+  <header class="hero" id="top">
+    <div class="glow glow-1" aria-hidden="true"></div>
+    <div class="glow glow-2" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <img src="assets/branding/return_visits_mark.svg" alt="">
+          The Open Door
+        </div>
+        <h1 class="hero-title">Continue the <strong>conversation.</strong></h1>
+        <p class="hero-body">An easy to use, helpful app so you can fully accomplish your ministry. Remember the people you meet and the conversations to continue.</p>
 
-    <div class="cta">
-      <!--
-        Loops form embed (Form ID cmpc0zaiu001h0jxlx2xz1pu8, user group "waitlist").
-        Default Loops inline styles have been stripped; styling lives in the
-        main stylesheet under "Loops form embed". The submission script at the
-        end of <body> is copied verbatim from Loops's embed and must stay in
-        sync with what Loops generates. To regenerate either piece:
-            Loops dashboard → Forms → edit this form → Copy HTML.
-      -->
-      <div class="newsletter-form-container">
-        <form class="newsletter-form"
-              action="https://app.loops.so/api/newsletter-form/cmpc0zaiu001h0jxlx2xz1pu8"
-              method="POST">
-          <input class="newsletter-form-input"
-                 type="email"
-                 name="newsletter-form-input"
-                 placeholder="you@example.com"
-                 required
-                 aria-label="Email address">
-          <button type="submit" class="newsletter-form-button">Join Waitlist</button>
-          <button type="button" class="newsletter-loading-button">Please wait…</button>
-        </form>
-        <div class="newsletter-success">
-          <p class="newsletter-success-message">Thanks — we'll let you know when we launch.</p>
+        <div class="get-app">
+          <div class="store-row">
+            <a class="apple-badge" href="https://apps.apple.com/us/app/field-service-companion/id6776202918" target="_blank" rel="noopener" aria-label="Download on the App Store">
+              <img src="assets/badges/app-store-badge.svg" alt="Download on the App Store" width="168" height="56">
+            </a>
+            <span class="play-soon" aria-disabled="true"><span class="g-icon" aria-hidden="true">▶</span> Coming soon to Google Play</span>
+          </div>
         </div>
-        <div class="newsletter-error">
-          <p class="newsletter-error-message">Something went wrong. Please try again.</p>
+      </div>
+      <div class="hero-art">
+        <div class="hero-art-glow" aria-hidden="true"></div>
+        <img src="assets/branding/return_visits_mark.svg" alt="The Open Door — Field Service Companion brand mark, an arched doorway open onto a warm kitchen interior">
+      </div>
+    </div>
+  </header>
+
+  <!-- ── How it works ── -->
+  <section class="how-it-works">
+    <div class="eyebrow-label">HOW IT WORKS</div>
+    <h2 class="section-title">Three steps to better return visits</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <div>
+          <div class="step-title">Add a contact</div>
+          <div class="step-body">Save someone you met, or import from your phone. Names are optional.</div>
         </div>
-        <button class="newsletter-back-button" type="button">&larr; Back</button>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <div>
+          <div class="step-title">Log the visit</div>
+          <div class="step-body">Note the outcome and what you talked about — in a few taps.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <div>
+          <div class="step-title">See who to return to</div>
+          <div class="step-body">Your dashboard brings the next conversation back to you.</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="features">
-    <div class="features-inner">
-      <div class="features-label">Built for the ministry</div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">💬</div>
-          <h3>Conversations First</h3>
-          <p>Remember what you discussed and where you left off. Pick up right where the conversation stopped.</p>
+  <!-- ── Feature rows ── -->
+  <section class="features" id="features">
+    <div class="feature-row">
+      <div class="feature-row-inner">
+        <div class="feature-copy">
+          <div class="feature-tag">CONTINUE THE CONVERSATION</div>
+          <h2 class="feature-title">Pick up exactly where you left off</h2>
+          <p class="feature-body">Your home screen shows you the next person to see — ranked by how things are going with them, nearest to you, or longest since your last visit.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3>Private by Design</h3>
-          <p>End-to-end encrypted. Your data stays on your device. No one else can read it — not even us.</p>
+        <div class="feature-art">
+          <div class="feature-art-bg" aria-hidden="true"></div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="dynamic-island" aria-hidden="true"></div>
+              <img src="assets/screens/dashboard.jpg" alt="Field Service Companion dashboard screen: &quot;Good morning — Continue the conversation&quot; with a scrollable list of contact cards, each showing status, the last item left with them, and a short note, plus a Coming Up reminder below.">
+            </div>
+          </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">📴</div>
-          <h3>Works Offline</h3>
-          <p>Full functionality without an internet connection. Perfect for the territory, wherever it takes you.</p>
+      </div>
+    </div>
+
+    <div class="feature-row alt flip">
+      <div class="feature-row-inner">
+        <div class="feature-copy">
+          <div class="feature-tag">VISIT LOGGING</div>
+          <h2 class="feature-title">One tap to remember a visit</h2>
+          <p class="feature-body">Make your notes in seconds — not-at-home, return visit, Bible study, and more. Note the literature you placed and edit the date if you logged it later.</p>
+        </div>
+        <div class="feature-art">
+          <div class="feature-art-bg" aria-hidden="true"></div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="dynamic-island" aria-hidden="true"></div>
+              <img src="assets/screens/visit.jpg" alt="Log a visit screen for Maria Santos showing the last visit summary, an editable visit date, outcome choices (Return visit, Study, Not at home, Not interested) with Return visit selected, and a visit notes field.">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-row-inner">
+        <div class="feature-copy">
+          <div class="feature-tag">MAP &amp; DIRECTIONS</div>
+          <h2 class="feature-title">See your territory, hand off the drive</h2>
+          <p class="feature-body">Contacts appear on the map around your current location. One tap opens directions in your favourite maps app, or text the driver your call's address so they can drive you to it!</p>
+        </div>
+        <div class="feature-art">
+          <div class="feature-art-bg" aria-hidden="true"></div>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="dynamic-island" aria-hidden="true"></div>
+              <img src="assets/screens/map.jpg" alt="Map screen centered on a metro Atlanta territory showing pinned contacts colour-coded by recency (Recent, 2–4 weeks, 1 month+), a current-location button, and the bottom tab bar.">
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ── Trust strip ── -->
+  <section class="trust-strip">
+    <div class="trust-eyebrow">PRIVATE BY DESIGN</div>
+    <div class="trust-body">Personal data is encrypted on your device. There is no server that can read it.</div>
+  </section>
+
+  <!-- ── FAQ ── -->
+  <section class="faq">
+    <div class="faq-inner">
+      <div class="faq-head">
+        <div class="eyebrow-label">QUESTIONS</div>
+        <h2 class="section-title" style="margin-bottom:0">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Does it cost anything?</div>
+        <div class="faq-a">No — the app is free to use.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is my data safe if I lose my phone?</div>
+        <div class="faq-a">Your data is encrypted on your device. Set up a local backup with your six-word recovery phrase so you can restore it yourself — just keep the phrase somewhere safe.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is this an official app?</div>
+        <div class="faq-a">No. It's a personal tool made by a fellow publisher — not affiliated with, nor endorsed by, Jehovah's Witnesses.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do I need an account?</div>
+        <div class="faq-a">You sign in once with Apple or Google on first launch. After that it works offline — the map is the only part that needs a connection.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Final CTA ── -->
+  <section class="final-cta">
+    <img class="mark" src="assets/branding/return_visits_mark.svg" alt="">
+    <h2>Ready to <strong>continue the conversation?</strong></h2>
+    <p>Free to use. Private by design. Yours in a couple of taps.</p>
+    <div class="get-app centered">
+      <div class="store-row">
+        <a class="apple-badge" href="https://apps.apple.com/us/app/field-service-companion/id6776202918" target="_blank" rel="noopener" aria-label="Download on the App Store">
+          <img src="assets/badges/app-store-badge.svg" alt="Download on the App Store" width="168" height="56">
+        </a>
+        <span class="play-soon" aria-disabled="true"><span class="g-icon" aria-hidden="true">▶</span> Coming soon to Google Play</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
   <footer>
-    <p>© 2026 Vineyard Software LLC · <a href="https://help.returnvisits.org">Support</a> · <a href="/privacy/">Privacy</a></p>
-    <p style="margin-top:16px">Field Service Companion is a personal ministry tool for individual publishers. It is an independent product — not affiliated with, endorsed by, or an official product of Jehovah's Witnesses, jw.org, or the Watch Tower Bible and Tract Society of Pennsylvania.</p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/branding/return_visits_mark.svg" alt="" width="32" height="32">
+        <div>
+          <div class="footer-brand-name">Field Service Companion</div>
+          <div class="footer-brand-sub">returnvisits.org</div>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">APP</div>
+          <a href="#features">Features</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="https://help.returnvisits.org" target="_blank" rel="noopener">Support</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">CONTACT</div>
+          <a href="https://help.returnvisits.org" target="_blank" rel="noopener">help.returnvisits.org</a>
+          <a href="mailto:support@returnvisits.org">support@returnvisits.org</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">Field Service Companion is a personal ministry tool for individual publishers. It is an independent product — not affiliated with, endorsed by, or an official product of Jehovah's Witnesses, jw.org, or the Watch Tower Bible and Tract Society of Pennsylvania.</p>
+      <p class="footer-copyright">© 2026 Vineyard Software LLC · returnvisits.org</p>
+    </div>
   </footer>
-
-  <script>
-    /* Loops form handler — copied verbatim from Loops's embed snippet.
-       Hooks .newsletter-form submit + .newsletter-back-button click on every
-       .newsletter-form-container in the document. Includes a 60s client-side
-       rate limit via localStorage to deter button mashing. */
-    function submitHandler(event) {
-      event.preventDefault();
-      var container = event.target.parentNode;
-      var form = container.querySelector(".newsletter-form");
-      var formInput = container.querySelector(".newsletter-form-input");
-      var success = container.querySelector(".newsletter-success");
-      var errorContainer = container.querySelector(".newsletter-error");
-      var errorMessage = container.querySelector(".newsletter-error-message");
-      var backButton = container.querySelector(".newsletter-back-button");
-      var submitButton = container.querySelector(".newsletter-form-button");
-      var loadingButton = container.querySelector(".newsletter-loading-button");
-
-      const rateLimit = () => {
-        errorContainer.style.display = "flex";
-        errorMessage.innerText = "Too many signups, please try again in a little while";
-        submitButton.style.display = "none";
-        formInput.style.display = "none";
-        backButton.style.display = "block";
-      };
-
-      var time = new Date();
-      var timestamp = time.valueOf();
-      var previousTimestamp = localStorage.getItem("loops-form-timestamp");
-
-      if (previousTimestamp && Number(previousTimestamp) + 60000 > timestamp) {
-        rateLimit();
-        return;
-      }
-      localStorage.setItem("loops-form-timestamp", timestamp);
-
-      submitButton.style.display = "none";
-      loadingButton.style.display = "flex";
-
-      var formBody = "userGroup=waitlist&mailingLists=&email="
-        + encodeURIComponent(formInput.value);
-
-      fetch(event.target.action, {
-        method: "POST",
-        body: formBody,
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      })
-        .then((res) => [res.ok, res.json(), res])
-        .then(([ok, dataPromise, res]) => {
-          if (ok) {
-            success.style.display = "flex";
-            form.reset();
-          } else {
-            dataPromise.then(data => {
-              errorContainer.style.display = "flex";
-              errorMessage.innerText = data.message ? data.message : res.statusText;
-            });
-          }
-        })
-        .catch(error => {
-          if (error.message === "Failed to fetch") {
-            rateLimit();
-            return;
-          }
-          errorContainer.style.display = "flex";
-          if (error.message) errorMessage.innerText = error.message;
-          localStorage.setItem("loops-form-timestamp", "");
-        })
-        .finally(() => {
-          formInput.style.display = "none";
-          loadingButton.style.display = "none";
-          backButton.style.display = "block";
-        });
-    }
-
-    function resetFormHandler(event) {
-      var container = event.target.parentNode;
-      var formInput = container.querySelector(".newsletter-form-input");
-      var success = container.querySelector(".newsletter-success");
-      var errorContainer = container.querySelector(".newsletter-error");
-      var errorMessage = container.querySelector(".newsletter-error-message");
-      var backButton = container.querySelector(".newsletter-back-button");
-      var submitButton = container.querySelector(".newsletter-form-button");
-
-      success.style.display = "none";
-      errorContainer.style.display = "none";
-      errorMessage.innerText = "Oops! Something went wrong, please try again";
-      backButton.style.display = "none";
-      formInput.style.display = "flex";
-      submitButton.style.display = "flex";
-    }
-
-    var formContainers = document.getElementsByClassName("newsletter-form-container");
-    for (var i = 0; i < formContainers.length; i++) {
-      var formContainer = formContainers[i];
-      if (formContainer.classList.contains("newsletter-handlers-added")) continue;
-      formContainer.querySelector(".newsletter-form").addEventListener("submit", submitHandler);
-      formContainer.querySelector(".newsletter-back-button").addEventListener("click", resetFormHandler);
-      formContainer.classList.add("newsletter-handlers-added");
-    }
-  </script>
 
 </body>
 </html>
