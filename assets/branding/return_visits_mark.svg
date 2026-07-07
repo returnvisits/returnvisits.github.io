@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Return Visits — Mark only (no squircle, transparent background)
+  For Android adaptive icon foreground (will be 16% inset and composited
+  onto the warm background drawable defined in colors.xml).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#F2D0B0"/>
+      <stop offset="35%"  stop-color="#E8B484"/>
+      <stop offset="75%"  stop-color="#D99558"/>
+      <stop offset="100%" stop-color="#A5632C"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#824D22" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#5F3818" stop-opacity="0.55"/>
+    </linearGradient>
+    <linearGradient id="door" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#2E6B9C"/>
+      <stop offset="100%" stop-color="#1C4366"/>
+    </linearGradient>
+    <radialGradient id="spill" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%"   stop-color="#E8B484" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#C47A38" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pendantGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%"   stop-color="#FDF6F0" stop-opacity="0.95"/>
+      <stop offset="55%"  stop-color="#F2D0B0" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#D99558" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="windowGlow" cx="0.5" cy="0.5" r="0.6">
+      <stop offset="0%"   stop-color="#F9E8D8" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#E8B484" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="doorwayClip">
+      <path d="M 280 815 L 280 465 Q 280 233 512 233 Q 744 233 744 465 L 744 815 Z"/>
+    </clipPath>
+  </defs>
+
+  <ellipse cx="429" cy="908" rx="280" ry="65" fill="url(#spill)"/>
+
+  <g clip-path="url(#doorwayClip)">
+    <rect x="255" y="208" width="514" height="630" fill="url(#sky)"/>
+    <rect x="255" y="630" width="514" height="210" fill="url(#floor)"/>
+    <rect x="255" y="630" width="514" height="7" fill="#824D22" opacity="0.35"/>
+
+    <ellipse cx="400" cy="386" rx="103" ry="74" fill="url(#windowGlow)"/>
+    <rect x="354" y="340" width="93" height="103" rx="6" fill="#FDF6F0" opacity="0.92"/>
+    <line x1="400" y1="340" x2="400" y2="442" stroke="#C47A38" stroke-width="4.5" opacity="0.7"/>
+    <line x1="354" y1="391" x2="447" y2="391" stroke="#C47A38" stroke-width="4.5" opacity="0.7"/>
+    <rect x="346" y="442" width="111" height="7" fill="#824D22" opacity="0.55"/>
+
+    <line x1="550" y1="255" x2="550" y2="465" stroke="#824D22" stroke-width="4.5" opacity="0.5"/>
+    <ellipse cx="550" cy="549" rx="139" ry="93" fill="url(#pendantGlow)"/>
+    <path d="M 517 465 Q 517 507 550 512 Q 583 507 583 465 Z" fill="#5F3818" opacity="0.88"/>
+    <ellipse cx="550" cy="516" rx="28" ry="7.5" fill="#FDF6F0" opacity="0.95"/>
+
+    <line x1="316" y1="642" x2="707" y2="642" stroke="#5F3818" stroke-width="11.5" stroke-linecap="round" opacity="0.7"/>
+    <line x1="316" y1="656" x2="707" y2="656" stroke="#5F3818" stroke-width="3.7" opacity="0.3"/>
+
+    <g fill="none" stroke="#F2D0B0" stroke-width="6" stroke-linecap="round" opacity="0.85">
+      <path d="M 348 596 Q 358 577 348 558 Q 339 540 348 521"/>
+      <path d="M 372 596 Q 381 577 372 558"/>
+    </g>
+    <path d="M 330 642 Q 321 624 330 610 Q 340 600 363 600 Q 387 600 391 614 L 391 637 Q 391 642 387 642 Z" fill="#5F3818" opacity="0.9"/>
+    <path d="M 330 614 L 311 600 L 311 610 L 326 624 Z" fill="#5F3818" opacity="0.9"/>
+    <path d="M 339 605 Q 363 586 387 605" stroke="#5F3818" stroke-width="6.9" fill="none" opacity="0.9" stroke-linecap="round"/>
+
+    <g stroke="#5F3818" stroke-width="10.2" stroke-linecap="round" fill="none" opacity="0.85">
+      <line x1="386" y1="679" x2="451" y2="679"/>
+      <line x1="400" y1="679" x2="391" y2="791"/>
+      <line x1="437" y1="679" x2="446" y2="791"/>
+      <line x1="572" y1="679" x2="637" y2="679"/>
+      <line x1="586" y1="679" x2="577" y2="791"/>
+      <line x1="623" y1="679" x2="632" y2="791"/>
+    </g>
+  </g>
+
+  <path d="M 744 815 L 744 410 Q 744 298 651 261 L 540 298 L 540 815 Z" fill="url(#door)"/>
+  <path d="M 540 298 L 540 815" stroke="#142F4B" stroke-width="9.3" opacity="0.65"/>
+  <path d="M 540 298 L 540 815" stroke="#F2D0B0" stroke-width="4.7" opacity="0.4"/>
+  <circle cx="577" cy="582" r="13" fill="#F2D0B0"/>
+
+  <path d="M 280 815 L 280 465 Q 280 233 512 233 Q 744 233 744 465 L 744 815"
+        stroke="#2E6B9C" stroke-width="51" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M 252 824 L 772 824" stroke="#2E6B9C" stroke-width="51" stroke-linecap="round"/>
+</svg>
