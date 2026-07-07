@@ -1,0 +1,47 @@
+# Deploys the site to Azure Static Web Apps (rvweb-prod-swa on the Vineyard
+# tenant — Terraform in the private FSC repo, infra/environments/website/).
+#
+# This runs ALONGSIDE GitHub Pages: Pages keeps serving returnvisits.org until
+# the DNS cutover (Dustin-gated); this workflow keeps the SWA copy at
+# https://thankful-cliff-0ec3c9810.7.azurestaticapps.net in lockstep with main.
+#
+# The site is plain static files — no build step (skip_app_build). We stage a
+# copy first because the deploy action has no exclude option and two things in
+# this repo are not site content:
+#   - themes/  : Zendesk Guide theme sources
+#   - CNAME    : GitHub Pages control file
+name: Deploy to Azure Static Web Apps
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Stage site content (exclude non-site files)
+        run: |
+          rsync -a \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            --exclude='themes/' \
+            --exclude='CNAME' \
+            --exclude='_site/' \
+            ./ _site/
+
+      - name: Deploy to Azure Static Web Apps
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
+          action: upload
+          app_location: _site
+          output_location: ""
+          skip_app_build: true
