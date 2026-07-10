@@ -16,6 +16,8 @@
         capture_exceptions: true,
         session_recording: { maskAllInputs: true },
     })
+    // Tag every event as website traffic so it never mingles with app analytics.
+    posthog.register({ source: 'website', site: 'returnvisits.org' })
   </script>
 
   <title>Privacy Policy — Field Service Companion</title>
