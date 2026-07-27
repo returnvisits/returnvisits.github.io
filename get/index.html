@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PostHog web analytics (same instance + config as the home page) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Fi Di init Ji Xi Tr Ki tn Zi capture calculateEventProperties ln register register_once register_for_session unregister unregister_for_session dn getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync cn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty un sn createPersonProfile setInternalOrTestUser hn Wi pn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing rn debug Er it getPageViewId captureTraceFeedback captureTraceMetric Ui".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_sTec2yDdskFkbVFZXhc7HX5FQmwZuRWPa3xNqyFXRszu', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'identified_only',
+        respect_dnt: true,
+        enable_heatmaps: true,
+        capture_exceptions: true,
+        session_recording: { maskAllInputs: true },
+    })
+    posthog.register({ source: 'website', site: 'returnvisits.org', page: 'get' })
+  </script>
+
+  <title>Get the app — Field Service Companion</title>
+  <meta name="description" content="Download Field Service Companion on the App Store or Google Play.">
+  <link rel="icon" type="image/svg+xml" href="/assets/branding/return_visits_mark.svg">
+  <link rel="canonical" href="https://returnvisits.org/get/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --p50:#EDF3F8; --p100:#D4E4F0; --p200:#A9C9E1; --p300:#7EAED2; --p400:#4F8FBF;
+      --p500:#2E6B9C; --p600:#245781; --p700:#1C4366; --p800:#142F4B; --p900:#0C1B30;
+      --s50:#FDF6F0; --s100:#F9E8D8; --s200:#F2D0B0; --s300:#E8B484;
+      --s400:#D99558; --s500:#C47A38; --s600:#A5632C; --s700:#824D22;
+      --n0:#FFFFFF; --n50:#F7F8FA; --n100:#ECEEF2; --n200:#D8DBE2; --n300:#8B92A4;
+      --n400:#6E7688; --n500:#6D7587; --n600:#555D6E; --n700:#3D4452; --n800:#272C38; --n900:#14171F;
+      --font: 'Noto Sans', system-ui, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: var(--font); color: var(--n900); background: var(--s50);
+      min-height: 100vh; display:flex; flex-direction:column;
+    }
+    nav {
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 18px clamp(20px, 5vw, 64px); background: var(--s50);
+    }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color: var(--n900); font-weight:600; font-size:17px; }
+    .brand img { width:35px; height:35px; }
+    .nav-back { font-size:14px; color: var(--p500); text-decoration:none; font-weight:500; }
+    .nav-back:hover { text-decoration:underline; }
+    main {
+      flex:1; display:flex; align-items:center; justify-content:center;
+      padding: clamp(24px, 6vw, 64px) 20px;
+    }
+    .card {
+      background: var(--n0); border:1px solid var(--s100); border-radius:20px;
+      box-shadow: 0 10px 40px rgba(20,23,31,0.07);
+      padding: clamp(32px, 5vw, 56px); max-width: 520px; width:100%; text-align:center;
+    }
+    .card .mark { width:64px; height:64px; margin: 0 auto 18px; display:block; }
+    h1 { font-size: clamp(24px, 4vw, 32px); font-weight:300; letter-spacing:-0.5px; margin-bottom:10px; }
+    h1 strong { font-weight:700; }
+    .sub { font-size:15px; line-height:1.6; color: var(--n600); margin-bottom:28px; }
+    .badges { display:flex; flex-direction:column; gap:14px; align-items:center; }
+    .badge-link { display:block; transition: transform .12s ease; }
+    .badge-link:hover { transform: scale(1.03); }
+    .apple-badge img { display:block; width:200px; height:auto; }
+    .play-badge img { display:block; height:96px; width:auto; }
+    .your-device {
+      display:inline-block; font-size:12px; font-weight:700; letter-spacing:0.8px;
+      color: var(--s600); background: var(--s100); border-radius:999px;
+      padding: 4px 12px; margin-bottom:10px; text-transform:uppercase;
+    }
+    .other-store { margin-top:18px; font-size:13px; color: var(--n500); }
+    .other-store a { color: var(--p500); font-weight:500; }
+    .qr-block { margin-top:30px; padding-top:26px; border-top:1px solid var(--n100); }
+    .qr-block img { width:148px; height:148px; border-radius:10px; border:1px solid var(--n100); }
+    .qr-block p { font-size:13px; color: var(--n500); margin-top:10px; line-height:1.5; }
+    .free-note { margin-top:24px; font-size:13px; color: var(--n500); }
+    footer { text-align:center; padding: 20px; font-size:12.5px; color: var(--n400); }
+    footer a { color: var(--n500); }
+    /* Platform-detected ordering: JS stamps data-platform on <body>. */
+    body[data-platform="ios"] .play-badge,
+    body[data-platform="android"] .apple-badge { display:none; }
+    body[data-platform="desktop"] .your-device,
+    body[data-platform="ios"] .qr-block,
+    body[data-platform="android"] .qr-block { display:none; }
+    body:not([data-platform="ios"]):not([data-platform="android"]) .other-store { display:none; }
+  </style>
+</head>
+<body data-platform="desktop">
+  <nav>
+    <a class="brand" href="/">
+      <img src="/assets/branding/return_visits_mark.svg" alt="">
+      <span>Field Service Companion</span>
+    </a>
+    <a class="nav-back" href="/">← Back to site</a>
+  </nav>
+
+  <main>
+    <div class="card">
+      <img class="mark" src="/assets/branding/return_visits_mark.svg" alt="">
+      <h1>Get <strong>Field Service Companion</strong></h1>
+      <p class="sub">Free to use. Private by design. Available on iPhone and Android.</p>
+
+      <div class="badges">
+        <span class="your-device">For your device</span>
+        <a class="badge-link apple-badge" href="https://apps.apple.com/us/app/field-service-companion/id6776202918?pt=128976466&amp;ct=rtv-fp&amp;mt=8" aria-label="Download on the App Store">
+          <img src="/assets/badges/app-store-badge.svg" alt="Download on the App Store">
+        </a>
+        <a class="badge-link play-badge" href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dweb%26utm_campaign%3Drtv-get" aria-label="Get it on Google Play">
+          <img src="/assets/badges/google-play-badge.png" alt="Get it on Google Play">
+        </a>
+      </div>
+
+      <p class="other-store">
+        Different device?
+        <a href="https://apps.apple.com/us/app/field-service-companion/id6776202918?pt=128976466&amp;ct=rtv-fp&amp;mt=8" class="link-ios">App Store</a><span class="sep"> · </span><a href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dweb%26utm_campaign%3Drtv-get" class="link-android">Google Play</a>
+      </p>
+
+      <div class="qr-block">
+        <img src="/assets/qr-get.png" alt="QR code linking to this page" width="148" height="148">
+        <p>On your computer? Point your phone's camera here —<br>it opens this page with the right store for your device.</p>
+      </div>
+
+      <p class="free-note">No account fees · Works fully offline · Your data stays on your device</p>
+    </div>
+  </main>
+
+  <footer>
+    <a href="/privacy/">Privacy</a> · <a href="https://help.returnvisits.org">Support</a> · © 2026 Vineyard Software LLC
+  </footer>
+
+  <script>
+    (function () {
+      var ua = navigator.userAgent || "";
+      var isAndroid = /Android/i.test(ua);
+      var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1); // iPadOS desktop-mode
+      var platform = isAndroid ? "android" : (isIOS ? "ios" : "desktop");
+      document.body.setAttribute("data-platform", platform);
+      // On a phone, hide the store link that duplicates the visible badge.
+      if (platform === "ios") {
+        var l = document.querySelector(".link-ios"); if (l) l.style.display = "none";
+        var s = document.querySelector(".sep"); if (s) s.style.display = "none";
+      }
+      if (platform === "android") {
+        var la = document.querySelector(".link-android"); if (la) la.style.display = "none";
+        var s2 = document.querySelector(".sep"); if (s2) s2.style.display = "none";
+      }
+    })();
+  </script>
+</body>
+</html>
