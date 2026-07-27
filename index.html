@@ -139,20 +139,16 @@
     h1.hero-title strong { font-weight:700; color: var(--p600); }
     .hero-body { font-size: clamp(16px, 1.6vw, 20px); line-height:1.6; color: var(--n600); margin-bottom:30px; max-width:470px; }
 
-    /* ── Get the app cluster (real Apple badge + quiet Play "coming soon") ── */
+    /* ── Get the app cluster (real Apple + Google Play badges) ── */
     .get-app { display:flex; flex-direction:column; gap:12px; align-items:flex-start; }
     .get-app.centered { align-items:center; }
-    .store-row { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+    .store-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
     .get-app.centered .store-row { justify-content:center; }
     .apple-badge img { display:block; width: 168px; height:auto; }
-    .play-soon {
-      display:inline-flex; align-items:center; gap:8px;
-      height:54px; padding: 0 16px; border-radius:11px;
-      border: 1.5px dashed var(--n300); color: var(--n500);
-      font-size:13px; font-weight:500; line-height:1.25; white-space:nowrap;
-      background: transparent;
-    }
-    .play-soon .g-icon { font-size:15px; line-height:1; }
+    /* Google's official badge art carries built-in transparent margin, so it
+       renders taller than its visible pill — 81px optically matches the 56px
+       Apple badge, and the smaller store-row gap offsets the padding. */
+    .play-badge img { display:block; height: 81px; width:auto; }
 
     /* ── How it works ── */
     .how-it-works {
@@ -295,7 +291,9 @@
             <a class="apple-badge" href="https://apps.apple.com/app/apple-store/id6776202918?pt=128976466&ct=rtv-fp&mt=8" target="_blank" rel="noopener" aria-label="Download on the App Store">
               <img src="assets/badges/app-store-badge.svg" alt="Download on the App Store" width="168" height="56">
             </a>
-            <span class="play-soon" aria-disabled="true"><span class="g-icon" aria-hidden="true">▶</span> Coming soon to Google Play</span>
+            <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dweb%26utm_campaign%3Drtv-fp" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+              <img src="assets/badges/google-play-badge.png" alt="Get it on Google Play" height="81">
+            </a>
           </div>
         </div>
       </div>
@@ -438,7 +436,9 @@
         <a class="apple-badge" href="https://apps.apple.com/app/apple-store/id6776202918?pt=128976466&ct=rtv-fp&mt=8" target="_blank" rel="noopener" aria-label="Download on the App Store">
           <img src="assets/badges/app-store-badge.svg" alt="Download on the App Store" width="168" height="56">
         </a>
-        <span class="play-soon" aria-disabled="true"><span class="g-icon" aria-hidden="true">▶</span> Coming soon to Google Play</span>
+        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dweb%26utm_campaign%3Drtv-fp" target="_blank" rel="noopener" aria-label="Get it on Google Play">
+          <img src="assets/badges/google-play-badge.png" alt="Get it on Google Play" height="81">
+        </a>
       </div>
     </div>
   </section>
