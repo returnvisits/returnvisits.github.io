@@ -1,0 +1,16 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["QGRDZX4UMB.org.returnvisits.fsc"],
+        "components": [
+          { "/": "/", "comment": "domain root opens the app on the dashboard" },
+          { "/": "/shared", "comment": "referral landing" },
+          { "/": "/shared/", "comment": "trailing-slash variant" },
+          { "/": "/open", "comment": "action selector: ?action=dashboard|map|backup|logVisit" },
+          { "/": "/open/", "comment": "trailing-slash variant" }
+        ]
+      }
+    ]
+  }
+}

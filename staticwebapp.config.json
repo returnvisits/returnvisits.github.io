@@ -3,5 +3,23 @@
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "strict-origin-when-cross-origin"
-  }
+  },
+  "mimeTypes": {
+    ".": "application/json",
+    ".json": "application/json"
+  },
+  "routes": [
+    {
+      "route": "/.well-known/apple-app-site-association",
+      "headers": {
+        "content-type": "application/json"
+      }
+    },
+    {
+      "route": "/.well-known/assetlinks.json",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+  ]
 }
