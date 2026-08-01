@@ -1,0 +1,10 @@
+# returnvisits.org — Field Service Companion
+# Everything public is crawlable. /shared/ is a referral endpoint reached from a
+# text message or a Universal Link, never from a search query, and carries its own
+# noindex meta tag; it is excluded here too so it can't surface as a stray result.
+
+User-agent: *
+Allow: /
+Disallow: /shared/
+
+Sitemap: https://returnvisits.org/sitemap.xml
