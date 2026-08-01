@@ -16,13 +16,17 @@
         capture_exceptions: true,
         session_recording: { maskAllInputs: true },
     })
-    posthog.register({ source: 'website', site: 'returnvisits.org', page: 'get' })
+    posthog.register({ source: 'website', site: 'returnvisits.org', page: 'shared' })
   </script>
 
-  <title>Get the app — Field Service Companion</title>
-  <meta name="description" content="Download Field Service Companion on the App Store or Google Play.">
+  <title>Shared with you — Field Service Companion</title>
+  <meta name="description" content="Someone shared an address with you using Field Service Companion, a private notebook for remembering the people you meet in the ministry.">
+  <!-- Referral endpoint, not search content: reached from a text message or a
+       Universal Link, never from a query. Kept out of the index (and out of
+       sitemap.xml) so it can't surface as a stray SERP result. -->
+  <meta name="robots" content="noindex, follow">
   <link rel="icon" type="image/svg+xml" href="/assets/branding/return_visits_mark.svg">
-  <link rel="canonical" href="https://returnvisits.org/get/">
+  <link rel="canonical" href="https://returnvisits.org/shared/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -40,7 +44,9 @@
     body {
       font-family: var(--font); color: var(--n900); background: var(--s50);
       min-height: 100vh; display:flex; flex-direction:column;
+      -webkit-font-smoothing: antialiased;
     }
+    a:focus-visible { outline: 2px solid var(--p500); outline-offset: 3px; border-radius: 4px; }
     nav {
       display:flex; align-items:center; justify-content:space-between;
       padding: 18px clamp(20px, 5vw, 64px); background: var(--s50);
@@ -56,12 +62,23 @@
     .card {
       background: var(--n0); border:1px solid var(--s100); border-radius:20px;
       box-shadow: 0 10px 40px rgba(20,23,31,0.07);
-      padding: clamp(32px, 5vw, 56px); max-width: 520px; width:100%; text-align:center;
+      padding: clamp(32px, 5vw, 56px); max-width: 560px; width:100%; text-align:center;
     }
     .card .mark { width:64px; height:64px; margin: 0 auto 18px; display:block; }
-    h1 { font-size: clamp(24px, 4vw, 32px); font-weight:300; letter-spacing:-0.5px; margin-bottom:10px; }
-    h1 strong { font-weight:700; }
-    .sub { font-size:15px; line-height:1.6; color: var(--n600); margin-bottom:28px; }
+    .eyebrow {
+      display:inline-block; font-size:12px; font-weight:700; letter-spacing:0.8px;
+      color: var(--s600); background: var(--s100); border-radius:999px;
+      padding: 5px 14px; margin-bottom:16px; text-transform:uppercase;
+    }
+    h1 { font-size: clamp(24px, 4vw, 32px); font-weight:300; letter-spacing:-0.5px; margin-bottom:14px; line-height:1.2; }
+    h1 strong { font-weight:700; color: var(--p600); }
+    .sub { font-size:15.5px; line-height:1.65; color: var(--n600); margin-bottom:22px; }
+    .note {
+      text-align:left; background: var(--p50); border-radius:14px;
+      padding: 16px 18px; margin-bottom:28px;
+      font-size:14px; line-height:1.6; color: var(--n700);
+    }
+    .note strong { color: var(--p700); font-weight:600; }
     .badges { display:flex; flex-direction:column; gap:14px; align-items:center; }
     .badge-link { display:block; transition: transform .12s ease; }
     .badge-link:hover { transform: scale(1.03); }
@@ -74,18 +91,17 @@
     }
     .other-store { margin-top:18px; font-size:13px; color: var(--n500); }
     .other-store a { color: var(--p500); font-weight:500; }
-    .qr-block { margin-top:30px; padding-top:26px; border-top:1px solid var(--n100); }
-    .qr-block img { width:148px; height:148px; border-radius:10px; border:1px solid var(--n100); }
-    .qr-block p { font-size:13px; color: var(--n500); margin-top:10px; line-height:1.5; }
-    .free-note { margin-top:24px; font-size:13px; color: var(--n500); }
-    footer { text-align:center; padding: 20px; font-size:12.5px; color: var(--n400); }
-    footer a { color: var(--n500); }
+    .free-note { margin-top:24px; font-size:13px; color: var(--n500); line-height:1.6; }
+    .learn-more { margin-top:18px; font-size:14px; }
+    .learn-more a { color: var(--p500); font-weight:600; }
+    footer { padding: 24px 20px 32px; text-align:center; }
+    .disclaimer { font-size:12px; color: var(--n400); line-height:1.6; max-width:560px; margin:0 auto 10px; }
+    .footer-links { font-size:12.5px; color: var(--n400); }
+    .footer-links a { color: var(--n500); }
     /* Platform-detected ordering: JS stamps data-platform on <body>. */
     body[data-platform="ios"] .play-badge,
     body[data-platform="android"] .apple-badge { display:none; }
-    body[data-platform="desktop"] .your-device,
-    body[data-platform="ios"] .qr-block,
-    body[data-platform="android"] .qr-block { display:none; }
+    body[data-platform="desktop"] .your-device { display:none; }
     body:not([data-platform="ios"]):not([data-platform="android"]) .other-store { display:none; }
   </style>
 </head>
@@ -95,41 +111,51 @@
       <img src="/assets/branding/return_visits_mark.svg" alt="">
       <span>Field Service Companion</span>
     </a>
-    <a class="nav-back" href="/">← Back to site</a>
+    <a class="nav-back" href="/">← About the app</a>
   </nav>
 
   <main>
     <div class="card">
       <img class="mark" src="/assets/branding/return_visits_mark.svg" alt="">
-      <h1>Get <strong>Field Service Companion</strong></h1>
-      <p class="sub">Free to use. Private by design. Available on iPhone and Android.</p>
+      <span class="eyebrow">Shared with you</span>
+      <h1>Someone shared an address using <strong>Field Service Companion</strong></h1>
+      <p class="sub">
+        Field Service Companion is a private notebook for the ministry. It helps you
+        remember the people you meet, what you last talked about, and the conversation
+        to continue next time.
+      </p>
+
+      <div class="note">
+        <strong>The address is in your message, not on this page.</strong>
+        Field Service Companion never sends names, addresses, or notes to our servers —
+        what your friend shared travelled in the text message itself, and nothing about
+        it was recorded here.
+      </div>
 
       <div class="badges">
         <span class="your-device">For your device</span>
-        <a class="badge-link apple-badge" href="https://apps.apple.com/us/app/field-service-companion/id6776202918?pt=128976466&amp;ct=rtv-fp&amp;mt=8" aria-label="Download on the App Store">
+        <a class="badge-link apple-badge" href="https://apps.apple.com/us/app/field-service-companion/id6776202918?pt=128976466&amp;ct=rtv-shared&amp;mt=8" aria-label="Download on the App Store">
           <img src="/assets/badges/app-store-badge.svg" alt="Download on the App Store">
         </a>
-        <a class="badge-link play-badge" href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dweb%26utm_campaign%3Drtv-get" aria-label="Get it on Google Play">
+        <a class="badge-link play-badge" href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dshare%26utm_campaign%3Drtv-shared" aria-label="Get it on Google Play">
           <img src="/assets/badges/google-play-badge.png" alt="Get it on Google Play">
         </a>
       </div>
 
       <p class="other-store">
         Different device?
-        <a href="https://apps.apple.com/us/app/field-service-companion/id6776202918?pt=128976466&amp;ct=rtv-fp&amp;mt=8" class="link-ios">App Store</a><span class="sep"> · </span><a href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dweb%26utm_campaign%3Drtv-get" class="link-android">Google Play</a>
+        <a href="https://apps.apple.com/us/app/field-service-companion/id6776202918?pt=128976466&amp;ct=rtv-shared&amp;mt=8" class="link-ios">App Store</a><span class="sep"> · </span><a href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dshare%26utm_campaign%3Drtv-shared" class="link-android">Google Play</a>
       </p>
 
-      <div class="qr-block">
-        <img src="/assets/qr-get.png" alt="QR code linking to this page" width="148" height="148">
-        <p>On your computer? Point your phone's camera here —<br>it opens this page with the right store for your device.</p>
-      </div>
+      <p class="free-note">Free to use · Works fully offline · Your records stay on your device</p>
 
-      <p class="free-note">No account fees · Works fully offline · Your data stays on your device</p>
+      <p class="learn-more"><a href="/">See what Field Service Companion does →</a></p>
     </div>
   </main>
 
   <footer>
-    <a href="/privacy/">Privacy</a> · <a href="/support/">Support</a> · © 2026 Vineyard Software LLC
+    <p class="disclaimer">Field Service Companion is a personal ministry tool for individual publishers. It is an independent product — not affiliated with, endorsed by, or an official product of Jehovah's Witnesses, jw.org, or the Watch Tower Bible and Tract Society of Pennsylvania.</p>
+    <p class="footer-links"><a href="/privacy/">Privacy</a> · <a href="/support/">Support</a> · © 2026 Vineyard Software LLC</p>
   </footer>
 
   <script>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PostHog web analytics (same instance + config as the home page) -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Fi Di init Ji Xi Tr Ki tn Zi capture calculateEventProperties ln register register_once register_for_session unregister unregister_for_session dn getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync cn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty un sn createPersonProfile setInternalOrTestUser hn Wi pn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing rn debug Er it getPageViewId captureTraceFeedback captureTraceMetric Ui".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_sTec2yDdskFkbVFZXhc7HX5FQmwZuRWPa3xNqyFXRszu', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'identified_only',
+        respect_dnt: true,
+        enable_heatmaps: true,
+        capture_exceptions: true,
+        session_recording: { maskAllInputs: true },
+    })
+    posthog.register({ source: 'website', site: 'returnvisits.org', page: 'support' })
+  </script>
+
+  <title>Support — Field Service Companion</title>
+  <meta name="description" content="Help articles, email support, and how to send a debug report for Field Service Companion.">
+  <link rel="icon" type="image/svg+xml" href="/assets/branding/return_visits_mark.svg">
+  <link rel="canonical" href="https://returnvisits.org/support/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --p50:#EDF3F8; --p100:#D4E4F0; --p200:#A9C9E1; --p300:#7EAED2; --p400:#4F8FBF;
+      --p500:#2E6B9C; --p600:#245781; --p700:#1C4366; --p800:#142F4B; --p900:#0C1B30;
+      --s50:#FDF6F0; --s100:#F9E8D8; --s200:#F2D0B0; --s300:#E8B484;
+      --s400:#D99558; --s500:#C47A38; --s600:#A5632C; --s700:#824D22;
+      --n0:#FFFFFF; --n50:#F7F8FA; --n100:#ECEEF2; --n200:#D8DBE2; --n300:#8B92A4;
+      --n400:#6E7688; --n500:#6D7587; --n600:#555D6E; --n700:#3D4452; --n800:#272C38; --n900:#14171F;
+      --font: 'Noto Sans', system-ui, sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: var(--font); color: var(--n900); background: var(--s50);
+      min-height: 100vh; display:flex; flex-direction:column;
+      -webkit-font-smoothing: antialiased;
+    }
+    a:focus-visible { outline: 2px solid var(--p500); outline-offset: 3px; border-radius: 4px; }
+    nav {
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 18px clamp(20px, 5vw, 64px); background: var(--s50);
+    }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color: var(--n900); font-weight:600; font-size:17px; }
+    .brand img { width:35px; height:35px; }
+    .nav-back { font-size:14px; color: var(--p500); text-decoration:none; font-weight:500; }
+    .nav-back:hover { text-decoration:underline; }
+    main { flex:1; padding: clamp(20px, 5vw, 48px) 20px clamp(32px, 6vw, 64px); }
+    .wrap { max-width: 680px; margin: 0 auto; }
+    .page-head { text-align:center; margin-bottom: clamp(28px, 5vw, 44px); }
+    h1 { font-size: clamp(28px, 4.4vw, 40px); font-weight:300; letter-spacing:-0.8px; margin-bottom:12px; }
+    h1 strong { font-weight:700; color: var(--p600); }
+    .lede { font-size:16px; line-height:1.65; color: var(--n600); max-width:520px; margin:0 auto; }
+    .card {
+      background: var(--n0); border:1px solid var(--s100); border-radius:18px;
+      box-shadow: 0 8px 32px rgba(20,23,31,0.05);
+      padding: clamp(24px, 4vw, 34px); margin-bottom:18px;
+    }
+    .card h2 { font-size:19px; font-weight:600; margin-bottom:10px; color: var(--n900); }
+    .card p { font-size:15px; line-height:1.65; color: var(--n600); margin-bottom:14px; }
+    .card p:last-child { margin-bottom:0; }
+    .cta {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 11px 22px; border-radius:999px; background: var(--p500); color:#fff;
+      font-size:14.5px; font-weight:600; text-decoration:none;
+      transition: background .15s ease;
+    }
+    .cta:hover { background: var(--p600); }
+    .cta.secondary { background: var(--n0); color: var(--p600); border:1.5px solid var(--p200); }
+    .cta.secondary:hover { background: var(--p50); }
+    ol { margin: 0 0 14px 20px; }
+    ol li { font-size:15px; line-height:1.7; color: var(--n600); margin-bottom:4px; }
+    ol li strong { color: var(--n800); font-weight:600; }
+    .privacy-note {
+      background: var(--p50); border-radius:12px; padding: 14px 16px;
+      font-size:13.5px; line-height:1.6; color: var(--n700);
+    }
+    .privacy-note strong { color: var(--p700); font-weight:600; }
+    .small-links { text-align:center; margin-top:26px; font-size:14px; color: var(--n500); }
+    .small-links a { color: var(--p500); font-weight:500; }
+    footer { padding: 8px 20px 32px; text-align:center; }
+    .disclaimer { font-size:12px; color: var(--n400); line-height:1.6; max-width:600px; margin:0 auto 10px; }
+    .footer-links { font-size:12.5px; color: var(--n400); }
+    .footer-links a { color: var(--n500); }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="brand" href="/">
+      <img src="/assets/branding/return_visits_mark.svg" alt="">
+      <span>Field Service Companion</span>
+    </a>
+    <a class="nav-back" href="/">← Back to site</a>
+  </nav>
+
+  <main>
+    <div class="wrap">
+      <div class="page-head">
+        <h1>How can we <strong>help?</strong></h1>
+        <p class="lede">Step-by-step guides, a way to reach a real person, and what to do if something goes wrong.</p>
+      </div>
+
+      <div class="card">
+        <h2>Help articles</h2>
+        <p>How to add a contact, log a visit, use the map, prepare your monthly report, back up your records, and import from another app — each written as a short walkthrough.</p>
+        <a class="cta" href="https://help.returnvisits.org/hc/en-us">Open the Help Center</a>
+      </div>
+
+      <div class="card">
+        <h2>Email us</h2>
+        <p>Questions, trouble signing in, or anything the articles don't cover — write to us and a person will read it.</p>
+        <a class="cta secondary" href="mailto:support@returnvisits.org">support@returnvisits.org</a>
+      </div>
+
+      <div class="card">
+        <h2>Something isn't working</h2>
+        <p>If the app is behaving strangely, a debug report tells us what happened:</p>
+        <ol>
+          <li>Open the <strong>Settings</strong> tab.</li>
+          <li>Tap <strong>Run integrity check now</strong> — this often clears things up on its own.</li>
+          <li>If the problem continues, tap <strong>Share debug report</strong> and email it to us.</li>
+        </ol>
+        <p class="privacy-note">
+          <strong>A debug report never contains your ministry records.</strong>
+          It carries app events, error codes, and device information — never your contacts,
+          visit notes, addresses, phone numbers, or anything you have written down.
+        </p>
+      </div>
+
+      <p class="small-links">
+        <a href="/privacy/">Privacy&nbsp;policy</a> ·
+        <a href="/delete-account/">Delete&nbsp;your&nbsp;account</a> ·
+        <a href="/get/">Get&nbsp;the&nbsp;app</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p class="disclaimer">Field Service Companion is a personal ministry tool for individual publishers. It is an independent product — not affiliated with, endorsed by, or an official product of Jehovah's Witnesses, jw.org, or the Watch Tower Bible and Tract Society of Pennsylvania.</p>
+    <p class="footer-links">© 2026 Vineyard Software LLC · <a href="https://returnvisits.org">returnvisits.org</a></p>
+  </footer>
+</body>
+</html>
