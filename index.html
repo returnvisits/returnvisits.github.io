@@ -20,14 +20,80 @@
     posthog.register({ source: 'website', site: 'returnvisits.org' })
   </script>
 
-  <title>Field Service Companion — Continue the conversation</title>
-  <meta name="description" content="A privacy-first mobile companion for Jehovah's Witnesses to remember the people they meet and continue meaningful conversations. Free on the App Store.">
+  <title>Field Service Companion — Return Visit App for the Ministry</title>
+  <meta name="description" content="A privacy-first return visit app for Jehovah's Witnesses to remember the people they meet and continue meaningful conversations. Free on iOS and Android.">
   <meta name="theme-color" content="#2E6B9C">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
   <link rel="canonical" href="https://returnvisits.org/">
+
+  <!-- Structured data: app entity + the FAQ section below (answers must stay
+       in sync with the visible .faq-item content). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MobileApplication",
+        "name": "Field Service Companion",
+        "url": "https://returnvisits.org/",
+        "image": "https://returnvisits.org/og-image.png",
+        "description": "A privacy-first return visit app for Jehovah's Witnesses to remember the people they meet and continue meaningful conversations.",
+        "operatingSystem": "iOS, Android",
+        "applicationCategory": "LifestyleApplication",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "installUrl": [
+          "https://apps.apple.com/us/app/field-service-companion/id6776202918",
+          "https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc"
+        ],
+        "author": {
+          "@type": "Organization",
+          "name": "Vineyard Software LLC",
+          "url": "https://returnvisits.org/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does it cost anything?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No — the app is free to use."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my data safe if I lose my phone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Your data is encrypted on your device. Set up a local backup with your six-word recovery phrase so you can restore it yourself — just keep the phrase somewhere safe."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this an official app?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It's a personal tool made by a fellow publisher — not affiliated with, nor endorsed by, Jehovah's Witnesses."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You sign in once with Apple or Google on first launch. After that it works offline — the map is the only part that needs a connection."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Field Service Companion — Continue the conversation">
