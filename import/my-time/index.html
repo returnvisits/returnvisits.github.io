@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- PostHog web analytics -->
+  <script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog && window.posthog.__loaded)||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="Fi Di init Ji Xi Tr Ki tn Zi capture calculateEventProperties ln register register_once register_for_session unregister unregister_for_session dn getFeatureFlag getFeatureFlagPayload getFeatureFlagResult getAllFeatureFlags isFeatureEnabled reloadFeatureFlags updateFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey displaySurvey cancelPendingSurvey canRenderSurvey canRenderSurveyAsync cn identify setPersonProperties unsetPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset shutdown setIdentity clearIdentity get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException addExceptionStep captureLog startExceptionAutocapture stopExceptionAutocapture loadToolbar get_property getSessionProperty un sn createPersonProfile setInternalOrTestUser hn Wi pn opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing get_explicit_consent_status is_capturing clear_opt_in_out_capturing rn debug Er it getPageViewId captureTraceFeedback captureTraceMetric Ui".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('phc_sTec2yDdskFkbVFZXhc7HX5FQmwZuRWPa3xNqyFXRszu', {
+        api_host: 'https://us.i.posthog.com',
+        defaults: '2026-05-30',
+        person_profiles: 'identified_only',
+        respect_dnt: true,
+        enable_heatmaps: true,
+        capture_exceptions: true,
+        session_recording: { maskAllInputs: true },
+    })
+    // Tag every event as website traffic so it never mingles with app analytics.
+    posthog.register({ source: 'website', site: 'returnvisits.org' })
+  </script>
+
+  <title>Switching from My Time — Field Service Companion</title>
+  <meta name="description" content="Bring your return visits and call records from the My Time app into Field Service Companion in a few minutes. The import happens entirely on your device.">
+  <meta name="theme-color" content="#2E6B9C">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="canonical" href="https://returnvisits.org/import/my-time/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Switching from My Time — Field Service Companion">
+  <meta property="og:description" content="Bring your My Time records into Field Service Companion in minutes — entirely on your device.">
+  <meta property="og:image" content="https://returnvisits.org/og-image.png">
+  <meta property="og:url" content="https://returnvisits.org/import/my-time/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Switching from My Time — Field Service Companion">
+  <meta name="twitter:description" content="Bring your My Time records into Field Service Companion in minutes — entirely on your device.">
+  <meta name="twitter:image" content="https://returnvisits.org/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Design tokens (shared with the landing / lib/core/theme) ── */
+    :root{
+      --p50:#EDF3F8; --p100:#D4E4F0; --p400:#4F8FBF; --p500:#2E6B9C; --p600:#245781; --p700:#1C4366; --p800:#142F4B;
+      --s50:#FDF6F0; --s100:#F9E8D8; --s200:#F2D0B0; --s300:#E8B484; --s400:#D99558; --s500:#C47A38; --s600:#A5632C;
+      --n0:#FFFFFF; --n50:#F7F8FA; --n100:#ECEEF2; --n200:#D8DBE2; --n300:#8B92A4; --n500:#6D7587; --n600:#555D6E; --n700:#3D4452; --n800:#272C38; --n900:#14171F;
+      --success:#3B8A5A;
+      --font:'Noto Sans', system-ui, sans-serif;
+      --maxw:760px;
+    }
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{ font-family:var(--font); background:var(--s50); color:var(--n900); line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+    img{ max-width:100%; }
+    a{ color:var(--p600); }
+    a:focus{ outline:none; }
+    a:focus-visible{ outline:2px solid var(--p500); outline-offset:3px; border-radius:4px; }
+
+    /* Nav — mirrors the landing */
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px clamp(20px,5vw,64px); }
+    .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .brand .mark{ width:35px; height:35px; display:block; }
+    .brand-name{ font-size:17px; font-weight:700; color:var(--n900); letter-spacing:-0.3px; }
+    .nav-links{ display:flex; align-items:center; gap:clamp(14px,2.4vw,34px); }
+    .nav-link{ font-size:14.5px; font-weight:500; color:var(--n600); text-decoration:none; white-space:nowrap; }
+    .nav-link:hover{ color:var(--p600); }
+    .nav-link[aria-current]{ color:var(--p700); font-weight:600; }
+    .pill-btn{ display:inline-flex; align-items:center; justify-content:center; padding:9px 20px; border-radius:999px; background:var(--p500); color:#fff; font-size:14px; font-weight:600; text-decoration:none; white-space:nowrap; transition:background .15s ease; }
+    .pill-btn:hover{ background:var(--p600); }
+    @media (max-width:640px){ .nav-link{ display:none; } .pill-btn{ display:inline-flex; } .nav{ padding:14px 20px; } }
+
+    /* Page header with warm glow */
+    .pagehead{ position:relative; overflow:hidden; padding:20px clamp(20px,5vw,64px) 8px; }
+    .pagehead .glow{ position:absolute; width:720px; height:720px; right:-200px; top:-320px; border-radius:50%; pointer-events:none; background:radial-gradient(circle,var(--s200) 0%,rgba(242,208,176,0) 70%); }
+    .pagehead-inner{ position:relative; max-width:var(--maxw); margin:0 auto; padding:28px 0 20px; }
+    .eyebrow{ display:inline-flex; align-items:center; padding:6px 14px; border-radius:999px; background:var(--s100); color:var(--s600); font-size:12px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:16px; }
+    h1.title{ font-size:clamp(30px,4vw,44px); font-weight:300; line-height:1.1; letter-spacing:-1px; color:var(--n900); margin:0; }
+    h1.title strong{ font-weight:700; color:var(--p600); }
+    .updated{ font-size:14px; color:var(--n500); margin-top:12px; }
+
+    /* Reading card */
+    .wrap{ max-width:var(--maxw); margin:8px auto 0; padding:0 clamp(20px,5vw,64px) 56px; }
+    .card{ background:var(--n0); border:1px solid var(--n100); border-radius:18px; padding:clamp(24px,4vw,44px); box-shadow:0 1px 3px rgba(20,30,50,.04); }
+
+    .summary{ background:var(--s50); border:1px solid var(--s200); border-left:4px solid var(--s500); border-radius:12px; padding:18px 22px; margin-bottom:34px; font-size:15px; color:var(--n800); line-height:1.6; }
+    .summary strong{ color:var(--s600); }
+
+    .card h2{ font-size:21px; font-weight:700; letter-spacing:-0.3px; color:var(--n900); margin:34px 0 12px; }
+    .card h2:first-of-type{ margin-top:0; }
+    .card h3{ font-size:15.5px; font-weight:600; color:var(--p700); margin:22px 0 8px; }
+    .card p, .card li{ font-size:15px; color:var(--n700); line-height:1.65; margin-bottom:12px; }
+    .card ul, .card ol{ padding-left:20px; margin-bottom:16px; }
+    .card li{ margin-bottom:6px; }
+    .card strong{ color:var(--n900); }
+
+    .badge{ display:inline-block; background:#E8F5EE; color:var(--success); font-size:12px; font-weight:700; border-radius:99px; padding:3px 11px; }
+    .badge.local{ background:var(--p50); color:var(--p600); }
+    .badge.partial{ background:var(--s100); color:var(--s600); }
+
+    .table-wrap{ overflow-x:auto; margin:16px 0 24px; border:1px solid var(--n100); border-radius:12px; }
+    table{ width:100%; border-collapse:collapse; font-size:14px; }
+    th{ text-align:left; font-weight:700; color:var(--n600); font-size:11px; letter-spacing:0.06em; text-transform:uppercase; padding:11px 14px; background:var(--n50); border-bottom:1px solid var(--n200); }
+    td{ padding:11px 14px; border-bottom:1px solid var(--n100); color:var(--n700); vertical-align:top; }
+    tr:last-child td{ border-bottom:none; }
+
+    /* Footer — mirrors the landing */
+    footer.site{ border-top:1px solid var(--n200); padding:40px clamp(20px,5vw,64px) 48px; }
+    .footer-top{ max-width:var(--maxw); margin:0 auto; display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; }
+    .footer-brand{ display:flex; align-items:center; gap:12px; }
+    .footer-brand .mark{ width:32px; height:32px; display:block; }
+    .footer-brand-name{ font-size:15px; font-weight:700; color:var(--n900); letter-spacing:-0.3px; }
+    .footer-brand-sub{ font-size:13px; color:var(--s500); font-weight:500; }
+    .footer-cols{ display:flex; gap:48px; flex-wrap:wrap; }
+    .footer-col-title{ font-size:11px; font-weight:700; letter-spacing:0.8px; color:var(--n500); text-transform:uppercase; margin-bottom:10px; }
+    .footer-col a{ display:block; font-size:14px; color:var(--n600); text-decoration:none; margin-bottom:7px; }
+    .footer-col a:hover{ color:var(--p600); }
+    .footer-bottom{ max-width:var(--maxw); margin:28px auto 0; padding-top:20px; border-top:1px solid var(--n100); }
+    .footer-disclaimer{ font-size:12.5px; line-height:1.6; color:var(--n500); margin:0 0 10px; }
+    .footer-copyright{ font-size:12.5px; color:var(--n300); margin:0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does importing from My Time cost anything?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No — importing is free, and imported contacts don't count against the free plan." }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I need an account to import my My Time records?",
+        "acceptedAnswer": { "@type": "Answer", "text": "You sign in once with Apple or Google when you first open Field Service Companion; after that it works fully offline." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does my ministry data ever leave my phone during the import?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Your contacts, notes, and visits stay on your device — that's the design." }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <nav class="nav">
+    <a class="brand" href="/" aria-label="Field Service Companion home">
+      <img class="mark" src="/assets/branding/return_visits_mark.svg" alt="" width="35" height="35">
+      <span class="brand-name">Field Service Companion</span>
+    </a>
+    <div class="nav-links">
+      <a class="nav-link" href="/#features">Features</a>
+      <a class="nav-link" href="/privacy/">Privacy</a>
+      <a class="nav-link" href="/support/">Support</a>
+      <a class="pill-btn" href="https://apps.apple.com/app/apple-store/id6776202918?pt=128976466&ct=rtv-fp&mt=8" target="_blank" rel="noopener">Get the app</a>
+    </div>
+  </nav>
+
+  <header class="pagehead">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="pagehead-inner">
+      <span class="eyebrow">Guide</span>
+      <h1 class="title">Bringing your records over <strong>from My Time</strong></h1>
+      <div class="updated">Updated: August 3, 2026</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <article class="card">
+
+      <p>For years, many publishers cared for their ministry records with the My Time app — and it served them well. But My Time hasn't been updated since September 2019, its developer's website is no longer reachable, and some friends report the app no longer opens on newer iPhones. The records you've kept — the people, the conversations, the return visits — are worth protecting.</p>
+      <p>Field Service Companion can bring them across in a few minutes, and everything happens on your device.</p>
+
+      <h2>First: save a backup, even if you're not switching today</h2>
+      <p>If My Time still opens on your phone, make a backup now — use its backup feature to email the file to yourself, and keep that email somewhere safe. Whatever app you use next, that file is your records.</p>
+
+      <h2>What comes across</h2>
+      <p>Your contacts, their visit history with notes and dates, placements, and your initial calls — carried over in one step. Details of exactly what transfers are in our help article: <a href="https://help.returnvisits.org/hc/en-us/articles/53878197545755" target="_blank" rel="noopener">Importing Your Data From My Time</a>.</p>
+
+      <h2>How to import</h2>
+      <ol>
+        <li><strong>Install Field Service Companion</strong> — free on the <a href="https://apps.apple.com/app/apple-store/id6776202918?pt=128976466&amp;ct=rtv-mytime&amp;mt=8" target="_blank" rel="noopener">App Store</a>.</li>
+        <li><strong>Get your My Time backup file</strong> — the file My Time emailed to you, saved to your phone.</li>
+        <li><strong>In Field Service Companion, choose Import</strong> — pick the file, review what will be added before anything is saved, and you're done. There's an Undo if you change your mind.</li>
+      </ol>
+      <p>Nothing is uploaded anywhere. The import — like everything in Field Service Companion — happens on your device, and your records stay there. See <a href="/privacy/">how we handle privacy</a>.</p>
+
+      <h2>If My Time no longer opens</h2>
+      <p>Your records may still be within reach. A backup you emailed yourself earlier can be imported directly — and if you're stuck, write to us at <a href="mailto:support@returnvisits.org">support@returnvisits.org</a> and we'll help you personally, whether or not you end up using our app.</p>
+
+      <h2>Common questions</h2>
+      <p><strong>Does importing cost anything?</strong> No — importing is free, and imported contacts don't count against the free plan.</p>
+      <p><strong>Do I need an account?</strong> You sign in once with Apple or Google when you first open the app; after that it works fully offline.</p>
+      <p><strong>Does my ministry data ever leave my phone?</strong> No. Your contacts, notes, and visits stay on your device — that's the design.</p>
+
+    </article>
+  </main>
+
+  <footer class="site">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img class="mark" src="/assets/branding/return_visits_mark.svg" alt="" width="32" height="32">
+        <div>
+          <div class="footer-brand-name">Field Service Companion</div>
+          <div class="footer-brand-sub">returnvisits.org</div>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">App</div>
+          <a href="/#features">Features</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/support/">Support</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Contact</div>
+          <a href="https://help.returnvisits.org" target="_blank" rel="noopener">help.returnvisits.org</a>
+          <a href="mailto:support@returnvisits.org">support@returnvisits.org</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-disclaimer">Field Service Companion is a personal ministry tool for individual publishers. It is an independent product — not affiliated with, endorsed by, or an official product of Jehovah's Witnesses, jw.org, or the Watch Tower Bible and Tract Society of Pennsylvania.</p>
+      <p class="footer-copyright">© 2026 Vineyard Software LLC · returnvisits.org</p>
+    </div>
+  </footer>
+
+</body>
+</html>
