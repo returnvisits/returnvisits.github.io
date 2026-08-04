@@ -1,0 +1,56 @@
+name: IndexNow ping
+
+# Notifies Bing (and other IndexNow endpoints) that site content changed, so
+# re-indexing happens in minutes instead of on the next scheduled crawl. Bing's
+# index grounds ChatGPT search, which makes freshness there disproportionately
+# valuable (FSC#765, parent FSC#711).
+#
+# The key file <key>.txt at the site root proves domain ownership to the
+# IndexNow endpoint. The ping submits every sitemap URL — the site is 6 pages,
+# so a full resubmit is simpler and cheaper than diffing changed paths.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'sitemap.xml'
+      - 'llms.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for GitHub Pages to serve the key file
+        run: |
+          # The ping is rejected unless the key file is live on the domain.
+          # Pages deploys usually land in under a couple of minutes; give it
+          # up to 5 before declaring failure.
+          for i in $(seq 1 30); do
+            if curl -sf "https://returnvisits.org/0bcaf375a050098da6ad2f8c26501512.txt" >/dev/null; then
+              echo "key file live"; exit 0
+            fi
+            sleep 10
+          done
+          echo "key file never became reachable" >&2; exit 1
+
+      - name: Submit sitemap URLs to IndexNow
+        run: |
+          urls=$(curl -sf "https://returnvisits.org/sitemap.xml" \
+            | grep -o '<loc>[^<]*</loc>' | sed -e 's/<[^>]*>//g' \
+            | sed 's/.*/"&"/' | paste -sd, -)
+          echo "submitting: $urls"
+          code=$(curl -s -o /tmp/indexnow-body -w "%{http_code}" \
+            -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "{\"host\":\"returnvisits.org\",\"key\":\"0bcaf375a050098da6ad2f8c26501512\",\"urlList\":[${urls}]}")
+          cat /tmp/indexnow-body
+          # 200 = accepted, 202 = accepted-pending-key-validation; both fine.
+          case "$code" in
+            200|202) echo "IndexNow accepted ($code)";;
+            *) echo "IndexNow rejected: HTTP $code" >&2; exit 1;;
+          esac

@@ -1,0 +1,35 @@
+# Field Service Companion
+
+> Field Service Companion (FSC) is a free, privacy-first mobile app that helps individual Jehovah's Witnesses remember the people they meet in their ministry, log return visits, and see who to visit next. Available for iPhone and Android. Ministry data is encrypted on the user's device — there is no server that can read it.
+
+Field Service Companion is a personal ministry tool for individual publishers. It is an independent product — not affiliated with, endorsed by, or an official product of Jehovah's Witnesses, jw.org, or the Watch Tower Bible and Tract Society of Pennsylvania.
+
+Key facts:
+
+- Free to use. No account fees.
+- Platforms: iPhone (App Store) and Android (Google Play).
+- Core loop: add a contact (names optional; import from the phone's contacts), log a visit in a few taps (outcome, notes, literature placed, editable date), and the dashboard surfaces the next conversation to continue — ranked by momentum, nearest, or longest since last visit.
+- Map view shows contacts around the user's location, with one-tap directions handoff to Apple Maps, Google Maps, or Waze, and the ability to text a call's address to a driver.
+- Privacy: personal ministry data (contacts, visit notes, literature records, addresses) stays on the device, encrypted. The only network features are sign-in (once, with Apple or Google), the map (addresses are geocoded by the device's built-in Apple/Google mapping service), and anonymous crash/product diagnostics (on by default, can be disabled in Settings).
+- Works fully offline after first sign-in — the map is the only part that needs a connection.
+- Backup: local backup protected by a six-word recovery phrase; the user restores it themselves.
+- Switching from My Time: FSC imports a My Time backup file in a few minutes, entirely on the device — contacts, visit history with notes and dates, placements, and initial calls.
+- Publisher: Vineyard Software LLC (doing business as "Return Visits"), United States. Contact: support@returnvisits.org.
+
+## Pages
+
+- [Home — features, how it works, FAQ](https://returnvisits.org/): what the app does, the three-step workflow, and answers to common questions (cost, data safety, official status, accounts, importing).
+- [Get the app](https://returnvisits.org/get/): store links for iPhone and Android.
+- [Switching from My Time](https://returnvisits.org/import/my-time/): step-by-step guide to bringing records over from the discontinued My Time app, including how to save a My Time backup first.
+- [Support](https://returnvisits.org/support/): help articles, email support, and how to send a debug report.
+- [Privacy Policy](https://returnvisits.org/privacy/): what stays on the device, the two narrow exceptions (map geocoding, anonymous diagnostics), and user rights.
+- [Delete your account](https://returnvisits.org/delete-account/): how to remove an account and its data.
+
+## Help Center
+
+- [help.returnvisits.org](https://help.returnvisits.org/): step-by-step walkthroughs — adding contacts, logging visits, using the map, preparing a monthly report, backup and restore, importing from another app, reporting problems.
+
+## Store listings
+
+- [App Store (iPhone)](https://apps.apple.com/us/app/field-service-companion/id6776202918)
+- [Google Play (Android)](https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc)
