@@ -7,4 +7,22 @@ User-agent: *
 Allow: /
 Disallow: /shared/
 
+# AI assistants and their crawlers are explicitly welcome (FSC#765). These
+# stanzas are functionally identical to the wildcard block above — they exist
+# to document intent and to survive any future change to the default rule.
+# Agent-facing site summary: https://returnvisits.org/llms.txt
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: CCBot
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /shared/
+
 Sitemap: https://returnvisits.org/sitemap.xml
