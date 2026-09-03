@@ -8,7 +8,8 @@
           { "/": "/shared", "comment": "referral landing" },
           { "/": "/shared/", "comment": "trailing-slash variant" },
           { "/": "/open", "comment": "action selector: ?action=dashboard|map|backup|logVisit" },
-          { "/": "/open/", "comment": "trailing-slash variant" }
+          { "/": "/open/", "comment": "trailing-slash variant" },
+          { "/": "/s/*", "comment": "per-share referral code (#999) — the app validates the 4-char code itself" }
         ]
       }
     ]

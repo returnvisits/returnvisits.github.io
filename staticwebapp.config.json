@@ -20,6 +20,15 @@
       "headers": {
         "content-type": "application/json"
       }
+    },
+    {
+      "route": "/s/*",
+      "rewrite": "/shared/index.html"
     }
-  ]
+  ],
+  "responseOverrides": {
+    "404": {
+      "rewrite": "/404.html"
+    }
+  }
 }
