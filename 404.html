@@ -134,6 +134,19 @@
     <a class="nav-back" href="/">← About the app</a>
   </nav>
 
+  <!-- NOTFOUND-ONLY -->
+  <!-- GitHub Pages serves this file for EVERY missing URL. For /s/CODE (and
+       its malformed cousins) the shared landing above/below is the right
+       page. For anything else, show a real not-found instead of implying a
+       share happened. Toggled by the script at the end of the file. -->
+  <main id="rv-notfound" hidden>
+    <section class="hero">
+      <h1>Page not found</h1>
+      <p class="lede">That link doesn't lead anywhere on returnvisits.org. If someone sent it to you, ask them to share it again from the app.</p>
+      <p class="lede"><a href="/">Go to the home page</a></p>
+    </section>
+  </main>
+  <!-- END-NOTFOUND-ONLY -->
   <main>
     <div class="card">
       <img class="mark" src="/assets/branding/return_visits_mark.svg" alt="">
@@ -178,6 +191,22 @@
     <p class="footer-links"><a href="/privacy/">Privacy</a> · <a href="/support/">Support</a> · © 2026 Vineyard Software LLC</p>
   </footer>
 
+  <!-- NOTFOUND-ONLY -->
+  <script>
+    (function () {
+      // Only a path that LOOKS like a share link gets the share landing.
+      // /s/ followed by anything renders the landing (a malformed code just
+      // has no ref); everything else is a plain not-found.
+      if (!/^\/s\//i.test(location.pathname)) {
+        var landing = document.querySelector("main:not(#rv-notfound)");
+        var nf = document.getElementById("rv-notfound");
+        if (landing) landing.hidden = true;
+        if (nf) nf.hidden = false;
+        document.title = "Page not found — Field Service Companion";
+      }
+    })();
+  </script>
+  <!-- END-NOTFOUND-ONLY -->
   <!-- #999: platform detection, store-anchor ref rewrite, landed/tapped
        events. External so /shared/ and 404.html run byte-identical logic. -->
   <script src="/assets/js/share-landing.js"></script>

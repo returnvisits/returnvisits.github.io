@@ -2,10 +2,12 @@
 # Everything public is crawlable. /shared/ is a referral endpoint reached from a
 # text message or a Universal Link, never from a search query, and carries its own
 # noindex meta tag; it is excluded here too so it can't surface as a stray result.
+# /s/CODE (#999) is the same landing with a per-share code — same treatment.
 
 User-agent: *
 Allow: /
 Disallow: /shared/
+Disallow: /s/
 
 # AI assistants and their crawlers are explicitly welcome (FSC#765). These
 # stanzas are functionally identical to the wildcard block above — they exist
@@ -24,5 +26,6 @@ User-agent: CCBot
 User-agent: Applebot-Extended
 Allow: /
 Disallow: /shared/
+Disallow: /s/
 
 Sitemap: https://returnvisits.org/sitemap.xml
