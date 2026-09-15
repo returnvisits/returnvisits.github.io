@@ -35,8 +35,37 @@
     }
   </script>
 
-  <title>Shared with you — Field Service Companion</title>
-  <meta name="description" content="Someone shared an address with you using Field Service Companion, a private notebook for remembering the people you meet in the ministry.">
+  <!-- FSC#1114 — render in the recipient's language (es / pt-BR / fr, else en).
+       The recipient's own browser list wins; the ?l= hint the sharer's app
+       appends for non-English sharers is the fallback; English otherwise.
+       Runs before first paint so <html lang> is right from the start. The
+       English markup below is the default a JS-less client sees. -->
+  <script>
+    /* RV-LANG-PICK-START */
+    function rvPickLang(languages, search) {
+      var SUPPORTED = { es: true, pt: true, fr: true };
+      var list = languages || [];
+      for (var i = 0; i < list.length; i++) {
+        var base = String(list[i] || "").toLowerCase().split(/[-_]/)[0];
+        if (SUPPORTED[base]) return base;
+      }
+      var m = /[?&]l=([a-z]{2,3})(?:[-_][a-z0-9]+)*(?:&|#|$)/i.exec(search || "");
+      if (m && SUPPORTED[m[1].toLowerCase()]) return m[1].toLowerCase();
+      return "en";
+    }
+    /* RV-LANG-PICK-END */
+    window.__rvLang = rvPickLang(
+      (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language],
+      location.search
+    );
+    document.documentElement.lang = ({ es: "es", pt: "pt-BR", fr: "fr" })[window.__rvLang] || "en";
+    document.documentElement.setAttribute("data-lang", window.__rvLang);
+    // Counts-only, session-scoped: lets the referral tile split by language.
+    posthog.register_for_session({ lang: window.__rvLang })
+  </script>
+
+  <title data-i18n="title">Shared with you — Field Service Companion</title>
+  <meta name="description" data-i18n-content="meta_description" content="Someone shared an address with you using Field Service Companion, a private notebook for remembering the people you meet in the ministry.">
   <!-- Referral endpoint, not search content: reached from a text message or a
        Universal Link, never from a query. Kept out of the index (and out of
        sitemap.xml) so it can't surface as a stray SERP result. -->
@@ -131,7 +160,7 @@
       <img src="/assets/branding/return_visits_mark.svg" alt="">
       <span>Field Service Companion</span>
     </a>
-    <a class="nav-back" href="/">← About the app</a>
+    <a class="nav-back" href="/" data-i18n="nav_back">← About the app</a>
   </nav>
 
   <!-- NOTFOUND-ONLY -->
@@ -141,54 +170,54 @@
        share happened. Toggled by the script at the end of the file. -->
   <main id="rv-notfound" hidden>
     <section class="hero">
-      <h1>Page not found</h1>
-      <p class="lede">That link doesn't lead anywhere on returnvisits.org. If someone sent it to you, ask them to share it again from the app.</p>
-      <p class="lede"><a href="/">Go to the home page</a></p>
+      <h1 data-i18n="nf_h1">Page not found</h1>
+      <p class="lede" data-i18n="nf_lede">That link doesn't lead anywhere on returnvisits.org. If someone sent it to you, ask them to share it again from the app.</p>
+      <p class="lede"><a href="/" data-i18n="nf_home">Go to the home page</a></p>
     </section>
   </main>
   <!-- END-NOTFOUND-ONLY -->
   <main>
     <div class="card">
       <img class="mark" src="/assets/branding/return_visits_mark.svg" alt="">
-      <span class="eyebrow">Shared with you</span>
-      <h1>Someone shared an address using <strong>Field Service Companion</strong></h1>
-      <p class="sub">
+      <span class="eyebrow" data-i18n="eyebrow">Shared with you</span>
+      <h1><span data-i18n="h1_pre">Someone shared an address using </span><strong>Field Service Companion</strong></h1>
+      <p class="sub" data-i18n="sub">
         Field Service Companion is a private notebook for the ministry. It helps you
         remember the people you meet, what you last talked about, and the conversation
         to continue next time.
       </p>
 
       <div class="note">
-        <strong>The address is in your message, not on this page.</strong>
-        Field Service Companion never sends names, addresses, or notes to our servers —
+        <strong data-i18n="note_lead">The address is in your message, not on this page.</strong>
+        <span data-i18n="note_body">Field Service Companion never sends names, addresses, or notes to our servers —
         what your friend shared travelled in the text message itself, and nothing about
-        it was recorded here.
+        it was recorded here.</span>
       </div>
 
       <div class="badges">
-        <span class="your-device">For your device</span>
-        <a class="badge-link apple-badge" href="https://apps.apple.com/us/app/field-service-companion/id6776202918?pt=128976466&amp;ct=rtv-shared&amp;mt=8" aria-label="Download on the App Store">
-          <img src="/assets/badges/app-store-badge.svg" alt="Download on the App Store">
+        <span class="your-device" data-i18n="your_device">For your device</span>
+        <a class="badge-link apple-badge" href="https://apps.apple.com/us/app/field-service-companion/id6776202918?pt=128976466&amp;ct=rtv-shared&amp;mt=8" aria-label="Download on the App Store" data-i18n-aria="badge_apple">
+          <img src="/assets/badges/app-store-badge.svg" alt="Download on the App Store" data-i18n-alt="badge_apple">
         </a>
-        <a class="badge-link play-badge" href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dshare%26utm_campaign%3Drtv-shared" aria-label="Get it on Google Play">
-          <img src="/assets/badges/google-play-badge.png" alt="Get it on Google Play">
+        <a class="badge-link play-badge" href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dshare%26utm_campaign%3Drtv-shared" aria-label="Get it on Google Play" data-i18n-aria="badge_play">
+          <img src="/assets/badges/google-play-badge.png" alt="Get it on Google Play" data-i18n-alt="badge_play">
         </a>
       </div>
 
       <p class="other-store">
-        Different device?
+        <span data-i18n="other_store">Different device?</span>
         <a href="https://apps.apple.com/us/app/field-service-companion/id6776202918?pt=128976466&amp;ct=rtv-shared&amp;mt=8" class="link-ios">App Store</a><span class="sep"> · </span><a href="https://play.google.com/store/apps/details?id=com.vineyardsoftware.fsc&amp;referrer=utm_source%3Dreturnvisits.org%26utm_medium%3Dshare%26utm_campaign%3Drtv-shared" class="link-android">Google Play</a>
       </p>
 
-      <p class="free-note">Free to use · Works fully offline · Your records stay on your device</p>
+      <p class="free-note" data-i18n="free_note">Free to use · Works fully offline · Your records stay on your device</p>
 
-      <p class="learn-more"><a href="/">See what Field Service Companion does →</a></p>
+      <p class="learn-more"><a href="/" data-i18n="learn_more">See what Field Service Companion does →</a></p>
     </div>
   </main>
 
   <footer>
-    <p class="disclaimer">Field Service Companion is a personal ministry tool for individual publishers. It is an independent product — not affiliated with, endorsed by, or an official product of Jehovah's Witnesses, jw.org, or the Watch Tower Bible and Tract Society of Pennsylvania.</p>
-    <p class="footer-links"><a href="/privacy/">Privacy</a> · <a href="/support/">Support</a> · © 2026 Vineyard Software LLC</p>
+    <p class="disclaimer" data-i18n="disclaimer">Field Service Companion is a personal ministry tool for individual publishers. It is an independent product — not affiliated with, endorsed by, or an official product of Jehovah's Witnesses, jw.org, or the Watch Tower Bible and Tract Society of Pennsylvania.</p>
+    <p class="footer-links"><a href="/privacy/" data-i18n="privacy">Privacy</a> · <a href="/support/" data-i18n="support">Support</a> · © 2026 Vineyard Software LLC</p>
   </footer>
 
   <!-- NOTFOUND-ONLY -->
@@ -207,6 +236,115 @@
     })();
   </script>
   <!-- END-NOTFOUND-ONLY -->
+  <!-- FSC#1114 — translations for the share landing + not-found. Keys map to
+       data-i18n (text), data-i18n-aria / data-i18n-alt / data-i18n-content
+       (attributes). Store links are NOT translated (the stores localize by
+       device); the badge images are English until localized artwork lands in
+       /assets/badges/. The footer disclaimer strings are the locked canonical
+       translations (FSC#1041) — never paraphrase them. Register per the app
+       glossary: es tú · pt-BR você · fr vous. -->
+  <script>
+    (function () {
+      var lang = window.__rvLang || "en";
+      if (lang === "en") return; // the markup already IS the English page
+      var T = {
+        es: {
+          title: "Compartido contigo — Field Service Companion",
+          title_notfound: "Página no encontrada — Field Service Companion",
+          meta_description: "Alguien compartió una dirección contigo usando Field Service Companion, un cuaderno privado para recordar a las personas que conoces en el ministerio.",
+          nav_back: "← Acerca de la app",
+          eyebrow: "Compartido contigo",
+          h1_pre: "Alguien compartió una dirección contigo desde ",
+          sub: "Field Service Companion es un cuaderno privado para el ministerio. Te ayuda a recordar a las personas que conoces, de qué hablaron la última vez y la conversación que puedes continuar la próxima vez.",
+          note_lead: "La dirección está en tu mensaje, no en esta página.",
+          note_body: "Field Service Companion nunca envía nombres, direcciones ni notas a nuestros servidores: lo que te compartieron viajó en el propio mensaje de texto, y nada de eso quedó registrado aquí.",
+          your_device: "Para tu dispositivo",
+          badge_apple: "Descárgalo en el App Store",
+          badge_play: "Disponible en Google Play",
+          other_store: "¿Otro dispositivo?",
+          free_note: "Gratis · Funciona sin conexión · Tus registros se quedan en tu dispositivo",
+          learn_more: "Descubre lo que hace Field Service Companion →",
+          disclaimer: "Field Service Companion es una herramienta personal para el ministerio, pensada para publicadores individuales. Es un producto independiente: no está afiliado a los testigos de Jehová, a jw.org ni a la Watch Tower Bible and Tract Society of Pennsylvania, no está avalado por ellos y no es un producto oficial de ninguno de ellos.",
+          privacy: "Privacidad",
+          support: "Soporte",
+          nf_h1: "Página no encontrada",
+          nf_lede: "Ese enlace no lleva a ninguna parte en returnvisits.org. Si alguien te lo envió, pídele que lo comparta de nuevo desde la app.",
+          nf_home: "Ir a la página principal"
+        },
+        pt: {
+          title: "Compartilhado com você — Field Service Companion",
+          title_notfound: "Página não encontrada — Field Service Companion",
+          meta_description: "Alguém compartilhou um endereço com você usando o Field Service Companion, um caderno particular para lembrar das pessoas que você encontra no ministério.",
+          nav_back: "← Sobre o app",
+          eyebrow: "Compartilhado com você",
+          h1_pre: "Alguém compartilhou um endereço com você pelo ",
+          sub: "O Field Service Companion é um caderno particular para o ministério. Ele ajuda você a lembrar das pessoas que encontra, do que conversaram da última vez e da conversa que pode continuar na próxima.",
+          note_lead: "O endereço está na sua mensagem, não nesta página.",
+          note_body: "O Field Service Companion nunca envia nomes, endereços ou anotações para os nossos servidores — o que compartilharam com você viajou na própria mensagem de texto, e nada disso foi registrado aqui.",
+          your_device: "Para o seu dispositivo",
+          badge_apple: "Baixar na App Store",
+          badge_play: "Disponível no Google Play",
+          other_store: "Outro dispositivo?",
+          free_note: "Gratuito · Funciona totalmente off-line · Seus registros ficam no seu dispositivo",
+          learn_more: "Veja o que o Field Service Companion faz →",
+          disclaimer: "O Field Service Companion é uma ferramenta pessoal para o ministério, feita para publicadores individuais. É um produto independente — não tem afiliação com as Testemunhas de Jeová, o jw.org nem a Watch Tower Bible and Tract Society of Pennsylvania, não é endossado por eles e não é um produto oficial deles.",
+          privacy: "Privacidade",
+          support: "Suporte",
+          nf_h1: "Página não encontrada",
+          nf_lede: "Esse link não leva a lugar nenhum em returnvisits.org. Se alguém enviou para você, peça que compartilhe de novo pelo app.",
+          nf_home: "Ir para a página inicial"
+        },
+        fr: {
+          title: "Partagé avec vous — Field Service Companion",
+          title_notfound: "Page introuvable — Field Service Companion",
+          meta_description: "Quelqu'un a partagé une adresse avec vous depuis Field Service Companion, un carnet privé pour se souvenir des personnes rencontrées dans le ministère.",
+          nav_back: "← À propos de l'application",
+          eyebrow: "Partagé avec vous",
+          h1_pre: "Quelqu'un a partagé une adresse avec vous depuis ",
+          sub: "Field Service Companion est un carnet privé pour le ministère. Il vous aide à vous souvenir des personnes que vous rencontrez, de votre dernière conversation et de celle à poursuivre la prochaine fois.",
+          note_lead: "L'adresse se trouve dans votre message, pas sur cette page.",
+          note_body: "Field Service Companion n'envoie jamais de noms, d'adresses ni de notes à nos serveurs : ce que l'on a partagé avec vous a voyagé dans le SMS lui-même, et rien n'en a été enregistré ici.",
+          your_device: "Pour votre appareil",
+          badge_apple: "Télécharger dans l'App Store",
+          badge_play: "Disponible sur Google Play",
+          other_store: "Un autre appareil ?",
+          free_note: "Gratuit · Fonctionne entièrement hors ligne · Vos fiches restent sur votre appareil",
+          learn_more: "Découvrir ce que fait Field Service Companion →",
+          disclaimer: "Field Service Companion est un outil personnel pour le ministère, destiné aux proclamateurs à titre individuel. C'est un produit indépendant : il n'est ni affilié aux Témoins de Jéhovah, à jw.org ou à la Watch Tower Bible and Tract Society of Pennsylvania, ni approuvé par eux, ni l'un de leurs produits officiels.",
+          privacy: "Confidentialité",
+          support: "Assistance",
+          nf_h1: "Page introuvable",
+          nf_lede: "Ce lien ne mène nulle part sur returnvisits.org. Si quelqu'un vous l'a envoyé, demandez-lui de le partager à nouveau depuis l'application.",
+          nf_home: "Aller à la page d'accueil"
+        }
+      };
+      var t = T[lang];
+      if (!t) return;
+      function each(sel, fn) {
+        var els = document.querySelectorAll(sel);
+        for (var i = 0; i < els.length; i++) fn(els[i]);
+      }
+      each("[data-i18n]", function (el) {
+        var v = t[el.getAttribute("data-i18n")];
+        if (v) el.textContent = v;
+      });
+      each("[data-i18n-aria]", function (el) {
+        var v = t[el.getAttribute("data-i18n-aria")];
+        if (v) el.setAttribute("aria-label", v);
+      });
+      each("[data-i18n-alt]", function (el) {
+        var v = t[el.getAttribute("data-i18n-alt")];
+        if (v) el.setAttribute("alt", v);
+      });
+      each("[data-i18n-content]", function (el) {
+        var v = t[el.getAttribute("data-i18n-content")];
+        if (v) el.setAttribute("content", v);
+      });
+      // The not-found toggle above may already have swapped the title.
+      var nf = document.getElementById("rv-notfound");
+      document.title = (nf && !nf.hidden) ? t.title_notfound : t.title;
+    })();
+  </script>
   <!-- #999: platform detection, store-anchor ref rewrite, landed/tapped
        events. External so /shared/ and 404.html run byte-identical logic. -->
   <script src="/assets/js/share-landing.js"></script>
