@@ -206,7 +206,7 @@
       <p>Open <strong>Settings → Diagnostics</strong> and turn off <strong>"Send diagnostic data."</strong> From app version 1.7.4, turning it off immediately stops product analytics, crash and error reports, and screen replays, and new events are no longer linked to your account. Turn it back on at any time and sending resumes.</p>
       <p>Three things still happen while it's off:</p>
       <ul>
-        <li>The app still checks for settings updates from us, so we can switch off a feature remotely if it causes problems.</li>
+        <li>The app still asks PostHog for settings updates (sending your installation and account identifiers, but no usage data), so we can switch off a feature remotely if it causes problems.</li>
         <li>If you choose to send a report yourself (<strong>"Send diagnostic data now"</strong>, or <strong>Send</strong> after a crash), that one report is sent.</li>
         <li>If you leave a tip, RevenueCat records it and sends a record of the tip to PostHog (see "Tips" below).</li>
       </ul>
@@ -214,7 +214,7 @@
 
       <h2>Tips</h2>
       <p>From app version 1.7.4 you can leave an optional tip in <strong>Settings → About → Support the app</strong>. A tip unlocks nothing; the app works the same whether or not you tip. The App Store or Google Play handles the payment, so your payment details stay with Apple or Google and we never see them.</p>
-      <p>Tips are processed by <strong>RevenueCat, Inc.</strong> (United States). When you open the tip sheet or leave a tip, RevenueCat receives the tip you chose, the store's receipt, an identifier created for tips, your account's identifier (a random code, never your name or email) so that we can credit the tip to you and thank early supporters, and basic device, store, and language information. It never receives your name, email, or any of your ministry data. RevenueCat sends a record of each tip (the tip size, price, currency, store, and those identifiers) to PostHog so we can see how tips are doing, whether or not "Send diagnostic data" is on.</p>
+      <p>Tips are processed by <strong>RevenueCat, Inc.</strong> (United States). When you open the tip sheet or leave a tip, RevenueCat receives the tip you chose, the store's receipt, an identifier created for tips, your account's identifier (a random code, never your name or email) when you choose a tip, so that we can credit the tip to you and thank early supporters, and basic device, store, and language information. It never receives your name, email, or any of your ministry data. RevenueCat sends a record of each tip (the tip size, price, currency, store, and those identifiers) to PostHog so we can see how tips are doing, whether or not "Send diagnostic data" is on. Because the account identifier is the same one PostHog uses for your diagnostics, a tip record can be connected to your account there.</p>
 
       <h2>Device permissions</h2>
       <p><strong>Contacts (READ_CONTACTS)</strong> — requested only when you use the "Import from device contacts" feature. FSC reads the selected contact's name, phone, email, and address to create a new FSC record. No contact data is transmitted off your device through us.</p>
